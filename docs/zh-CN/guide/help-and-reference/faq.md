@@ -28,7 +28,7 @@ AviQtl-Plus 并非"重新发明 AviUtl"。虽然深受 AviUtl 影响，但内部
 
 | 项目 | AviQtl-Plus | ExEdit0 | ExEdit2 |
 | :--- | :--- | :--- | :--- |
-| 核心技术 | Qt6 | Win32 API | Win32 API |
+| 核心技术 | Rust + Slint（Qt6 旧版） | Win32 API | Win32 API |
 | 并行处理模型 | 数据驱动（ECS） | 单线程 | 多线程 |
 | 内存空间 | 64位 | 32位（最大4GB） | 64位 |
 | 预览渲染 | Vulkan / Metal / DX12 | GDI | DX11 |

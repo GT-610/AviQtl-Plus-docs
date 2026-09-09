@@ -22,6 +22,20 @@ cd AviQtl-Plus
 python3 BUILD.py
 ```
 
+### 前端选择
+
+`BUILD.py` 默认构建 **Rust + Slint 前端（建设中）**。迁移期间，旧 C++/QML（Qt）前端仍然可用：
+
+```bash
+# 旧 Qt 前端（debug 示例）
+python3 BUILD.py --xcode --frontend qt --debug
+
+# 指定 Qt6 安装路径
+python3 BUILD.py --xcode --frontend qt --qt-dir <Qt6 路径>
+```
+
+Qt 构建经 CMake（Ninja）输出到 `.build_tmp/<target>/<Config>/qt-build`，再把原始 Qt 产物（macOS 为 `AviQtl.app` 包，其余平台为 `AviQtl` 二进制）连同共享资源装配到 `build/`，归档名带 `-Qt` 后缀。这些是开发构建：有意跳过平台部署（`macdeployqt`/`windeployqt`），分发 Qt 构建前请先运行对应的部署工具。`--qt-dir` 仅对 Qt 构建有效；省略时通过 `PATH` 中的 `qmake6`/`qmake` 检测。
+
 常用平台模式包括：
 
 ```bash
@@ -84,7 +98,7 @@ MSVC 可用于开发，但需要 Visual Studio Build Tools、匹配的 Qt MSVC �
    - vcpkg（可通过 `VCPKG_ROOT` 环境变量指定；如未找到，`BUILD.py` 将尝试自动获取）
 2. **构建**
    - `python3 BUILD.py --msvc --qt-dir <Qt 安装目录>`
-   - 如省略 `--qt-dir`，将尝试从 `QT_MSVC_DIR` 等环境变量自动检测。
+   - 如省略 `--qt-dir`，将通过 `PATH` 中的 `qmake6`/`qmake` 检测 Qt。
 3. **运行**
    - `.\build\AviQtl.exe`
 

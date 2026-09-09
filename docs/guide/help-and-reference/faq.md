@@ -39,7 +39,7 @@ AviUtl, its internals are entirely different.
 
 | Item | AviQtl-Plus | ExEdit0 | ExEdit2 |
 | :--- | :--- | :--- | :--- |
-| Core technology | Qt6 | Win32 API | Win32 API |
+| Core technology | Rust + Slint (Qt6 legacy) | Win32 API | Win32 API |
 | Parallelism model | Data-driven (ECS) | Single-threaded | Multi-threaded |
 | Memory space | 64-bit | 32-bit (max 4GB) | 64-bit |
 | Preview rendering | Vulkan / Metal / DX12 | GDI | DX11 |

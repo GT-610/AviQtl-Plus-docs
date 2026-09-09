@@ -5,7 +5,7 @@ description: 构建、理解、扩展并参与 AviQtl-Plus 开发。
 
 # 开发者文档
 
-AviQtl-Plus 将 C++23 与 Qt 6 应用核心、Qt Quick 界面、QRhi 渲染、面向 ECS 的时间线数据、FFmpeg 媒体处理、LuaJIT 插件和 QML/GLSL 效果包组合在一起。
+AviQtl-Plus 以共享的 Rust 工作区（时间线、特效、音频、渲染、媒体）为基础，提供两个前端：默认的 **Rust + Slint** 界面（建设中），以及旧 **C++23 / Qt 6 + Qt Quick** 界面（含 QRhi 渲染、面向 ECS 的时间线数据、FFmpeg 媒体处理、LuaJIT 插件和 QML/GLSL 效果包）。用 `BUILD.py --frontend {slint,qt}` 选择前端（默认 `slint`）。
 
 ## 开始贡献
 

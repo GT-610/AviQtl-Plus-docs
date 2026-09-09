@@ -9,8 +9,10 @@ description: What AviQtl-Plus is, its history, and its relationship with the ups
 
 AviQtl-Plus is a free, open-source video editor that inherits the operability
 of **AviUtl 1.10** and **ExEdit 0.92** while delivering **performance that
-surpasses AviUtl**. It is a cross-platform desktop application built with Qt
-Quick, QRhi, and an ECS-oriented core.
+surpasses AviUtl**. It is a cross-platform desktop application. The frontend
+is migrating from Qt Quick + QRhi to **Rust + Slint + wgpu** — Slint is the
+default build (under construction) — on top of an ECS-oriented core with a
+shared Rust workspace for timeline, effects, audio, rendering, and media.
 
 Its key strengths are:
 
@@ -39,7 +41,20 @@ As a result, three NeoUtl-related projects now exist in parallel:
 - **[AviQtl](https://codeberg.org/taisho-guy/NeoUtl/src/branch/aviqtl)** — the
   original Qt Quick-based version, continuing as "AviQtl".
 - **AviQtl-Plus (this project)** — a fork continuing the Qt Quick + QRhi + ECS
-  approach.
+  approach, now migrating its frontend to Rust + Slint + wgpu.
+
+## Frontend migration
+
+The default `BUILD.py` build now targets the **Rust + Slint frontend**
+(under construction). While the migration is in progress, the legacy Qt
+Quick frontend remains available for development use:
+
+```bash
+python3 BUILD.py --xcode --frontend qt --debug
+```
+
+Qt builds are undeployed development binaries; see
+[Build from source](../../developer/building#frontend-selection) for details.
 
 ### Why the original project paused
 

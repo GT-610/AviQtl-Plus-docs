@@ -24,6 +24,28 @@ project, and builds it. The normal entry point is:
 python3 BUILD.py
 ```
 
+### Frontend selection
+
+`BUILD.py` builds the **Rust + Slint frontend by default** (under
+construction). While the migration is in progress, the legacy C++/QML (Qt)
+frontend remains available:
+
+```bash
+# Legacy Qt frontend (debug example)
+python3 BUILD.py --xcode --frontend qt --debug
+
+# Qt with an explicit Qt6 install prefix
+python3 BUILD.py --xcode --frontend qt --qt-dir <Qt6 prefix>
+```
+
+Qt builds run CMake (Ninja) into `.build_tmp/<target>/<Config>/qt-build`,
+then stage the raw Qt product — the `AviQtl.app` bundle on macOS, otherwise
+the `AviQtl` binary — plus the shared resources into `build/`, with a `-Qt`
+suffix on the archive name. These are development builds: platform deployment
+(`macdeployqt`/`windeployqt`) is intentionally skipped, so run the matching
+deployment tool before distributing a Qt build. `--qt-dir` is only honored
+for Qt builds; without it, `qmake6`/`qmake` on `PATH` is used for detection.
+
 Common platform-specific modes include:
 
 ```bash
@@ -93,8 +115,8 @@ MSVC builds are not recommended due to the complexity of environment setup.
      it if not found)
 2. **Build**
    - `python3 BUILD.py --msvc --qt-dir <Qt installation directory>`
-   - If `--qt-dir` is omitted, automatic detection from `QT_MSVC_DIR` and
-     similar environment variables is attempted.
+   - If `--qt-dir` is omitted, `qmake6`/`qmake` on `PATH` is used for
+     Qt detection.
 3. **Run**
    - `.\build\AviQtl.exe`
 

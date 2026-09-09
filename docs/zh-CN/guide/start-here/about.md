@@ -7,7 +7,7 @@ description: AviQtl-Plus 是什么、它的历史，以及与上游 NeoUtl 项�
 
 ## 什么是 AviQtl-Plus？
 
-AviQtl-Plus 是一款自由、开源的视频编辑软件，继承 **AviUtl 1.10** 与 **ExEdit 0.92** 的操作体验，同时拥有**超越 AviUtl 的性能**。它是一款基于 Qt Quick、QRhi 与 ECS 架构核心构建的跨平台桌面应用。
+AviQtl-Plus 是一款自由、开源的视频编辑软件，继承 **AviUtl 1.10** 与 **ExEdit 0.92** 的操作体验，同时拥有**超越 AviUtl 的性能**。它是一款跨平台桌面应用。前端正在从 Qt Quick + QRhi 向 **Rust + Slint + wgpu** 迁移——Slint 为默认构建（建设中）——底层是 ECS 架构核心，以及时间线、特效、音频、渲染、媒体共享的 Rust 工作区。
 
 其核心优势包括：
 
@@ -27,7 +27,19 @@ AviQtl-Plus 是一款自由、开源的视频编辑软件，继承 **AviUtl 1.10
 
 - **[NeoUtl](https://codeberg.org/taisho-guy/NeoUtl)** — 使用 Rust + Slint + wgpu 重建的原项目。
 - **[AviQtl](https://codeberg.org/taisho-guy/NeoUtl/src/branch/aviqtl)** — 原 Qt Quick 版本，继续作为 "AviQtl"。
-- **AviQtl-Plus（本项目）** — 继续发展 Qt Quick + QRhi + ECS 路线的 fork。
+- **AviQtl-Plus（本项目）** — 继续发展 Qt Quick + QRhi + ECS 路线的 fork，
+  目前前端正在向 Rust + Slint + wgpu 迁移。
+
+## 前端迁移
+
+默认的 `BUILD.py` 构建已切换为 **Rust + Slint 前端（建设中）**。迁移期间，旧 Qt
+Quick 前端仍可用于开发：
+
+```bash
+python3 BUILD.py --xcode --frontend qt --debug
+```
+
+Qt 构建为未部署的开发二进制；详见[从源码构建](../../developer/building#前端选择)。
 
 ### 原项目暂停开发的原因
 

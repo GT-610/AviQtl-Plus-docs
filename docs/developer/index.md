@@ -5,9 +5,12 @@ description: Build, understand, extend, and contribute to AviQtl-Plus.
 
 # Developer documentation
 
-AviQtl-Plus combines a C++23 and Qt 6 application core with Qt Quick UI, QRhi
+AviQtl-Plus pairs a shared Rust workspace (timeline, effects, audio,
+rendering, media) with two frontends: the default **Rust + Slint** UI (under
+construction) and the legacy **C++23 / Qt 6 + Qt Quick** UI with QRhi
 rendering, ECS-oriented timeline data, FFmpeg media processing, LuaJIT plugins,
-and QML/GLSL effect packages.
+and QML/GLSL effect packages. Select the frontend with
+`BUILD.py --frontend {slint,qt}` (default: `slint`).
 
 ## Start contributing
 
