@@ -101,6 +101,7 @@ MSVC 构建仅支持 Visual Studio 2022（17.x）及更高版本。Visual Studio
    - Visual Studio 2022 或更高版本的 Build Tools、C++ x64/x86 工具集和 Windows SDK
    - 官方 Qt 的 MSVC x64 版本（例如 `msvc2022_64`）
    - vcpkg（可通过 `VCPKG_ROOT` 环境变量指定；如未找到，`BUILD.py` 将尝试自动获取）
+   - vcpkg 必须能够获取其 Clang 工具；`BUILD.py` 会为 Rust 的 FFmpeg 绑定自动设置 `LIBCLANG_PATH`
 2. **构建**
    - `python3 BUILD.py --msvc`
    - 使用旧 Qt 前端时，增加 `--frontend qt --qt-dir <Qt 安装目录>`；如省略

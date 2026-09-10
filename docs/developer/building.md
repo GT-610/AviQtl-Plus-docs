@@ -118,6 +118,8 @@ FFmpeg 9.0.1 dependency is built through the repository's vcpkg overlay.
    - Official Qt MSVC x64 build (for example `msvc2022_64`)
    - vcpkg (can be specified via `VCPKG_ROOT`; `BUILD.py` will attempt to fetch
      it if not found)
+   - vcpkg must be able to acquire its Clang tool; `BUILD.py` automatically
+     sets `LIBCLANG_PATH` for the Rust FFmpeg bindings
 2. **Build**
    - `python3 BUILD.py --msvc`
    - For the legacy Qt frontend, add `--frontend qt --qt-dir <Qt installation directory>`.
