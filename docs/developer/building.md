@@ -59,9 +59,11 @@ python3 BUILD.py --xcode
 python3 BUILD.py --msys2
 ```
 
-MSVC is supported for development but requires Visual Studio Build Tools, a
-matching Qt MSVC installation, and vcpkg. See `python3 BUILD.py --help` for the
-current options.
+MSVC builds require Visual Studio 2022 (17.x) or newer. Visual Studio 2019
+and earlier are not supported. `BUILD.py` selects a supported Visual Studio
+installation through `vswhere` and rejects older toolsets. The build also
+requires a matching Qt MSVC installation when using the legacy Qt frontend,
+and vcpkg. See `python3 BUILD.py --help` for the current options.
 
 ## Platform notes
 
@@ -104,19 +106,23 @@ bundle.
 3. **Run**
    - `./build/AviQtl.exe`
 
-### Windows (MSVC - not recommended)
+### Windows (MSVC)
 
-MSVC builds are not recommended due to the complexity of environment setup.
+MSVC builds are supported with Visual Studio 2022 (17.x) or newer only.
+Visual Studio 2019 and earlier cannot be used to build this project. The
+FFmpeg 9.0.1 dependency is built through the repository's vcpkg overlay.
 
 1. **Additional prerequisites**
-   - Visual Studio 2022 Build Tools with C++ toolset
+   - Visual Studio 2022 or newer Build Tools with the C++ x64/x86 toolset and
+     a Windows SDK
    - Official Qt MSVC x64 build (for example `msvc2022_64`)
    - vcpkg (can be specified via `VCPKG_ROOT`; `BUILD.py` will attempt to fetch
      it if not found)
 2. **Build**
-   - `python3 BUILD.py --msvc --qt-dir <Qt installation directory>`
-   - If `--qt-dir` is omitted, `qmake6`/`qmake` on `PATH` is used for
-     Qt detection.
+   - `python3 BUILD.py --msvc`
+   - For the legacy Qt frontend, add `--frontend qt --qt-dir <Qt installation directory>`.
+     If `--qt-dir` is omitted, `qmake6`/`qmake` on `PATH` is used for Qt
+     detection.
 3. **Run**
    - `.\build\AviQtl.exe`
 

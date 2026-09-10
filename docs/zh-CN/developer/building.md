@@ -49,7 +49,10 @@ python3 BUILD.py --xcode
 python3 BUILD.py --msys2
 ```
 
-MSVC 可用于开发，但需要 Visual Studio Build Tools、匹配的 Qt MSVC 安装和 vcpkg。当前参数请查看 `python3 BUILD.py --help`。
+MSVC 构建仅支持 Visual Studio 2022（17.x）及更高版本。Visual Studio 2019
+及更早版本不受支持。`BUILD.py` 会通过 `vswhere` 选择受支持的 Visual
+Studio 安装，并拒绝旧工具集。使用旧 Qt 前端时还需要匹配的 Qt MSVC
+安装和 vcpkg。当前参数请查看 `python3 BUILD.py --help`。
 
 ## 平台说明
 
@@ -88,17 +91,20 @@ MSVC 可用于开发，但需要 Visual Studio Build Tools、匹配的 Qt MSVC �
 3. **运行**
    - `./build/AviQtl.exe`
 
-### Windows (MSVC - 不推荐)
+### Windows (MSVC)
 
-由于环境配置复杂，不推荐使用 MSVC 构建。
+MSVC 构建仅支持 Visual Studio 2022（17.x）及更高版本。Visual Studio 2019
+及更早版本不能用于构建本项目。FFmpeg 9.0.1 由仓库内的 vcpkg overlay
+负责构建。
 
 1. **额外准备**
-   - Visual Studio 2022 Build Tools 的 C++ 工具集
+   - Visual Studio 2022 或更高版本的 Build Tools、C++ x64/x86 工具集和 Windows SDK
    - 官方 Qt 的 MSVC x64 版本（例如 `msvc2022_64`）
    - vcpkg（可通过 `VCPKG_ROOT` 环境变量指定；如未找到，`BUILD.py` 将尝试自动获取）
 2. **构建**
-   - `python3 BUILD.py --msvc --qt-dir <Qt 安装目录>`
-   - 如省略 `--qt-dir`，将通过 `PATH` 中的 `qmake6`/`qmake` 检测 Qt。
+   - `python3 BUILD.py --msvc`
+   - 使用旧 Qt 前端时，增加 `--frontend qt --qt-dir <Qt 安装目录>`；如省略
+     `--qt-dir`，将通过 `PATH` 中的 `qmake6`/`qmake` 检测 Qt。
 3. **运行**
    - `.\build\AviQtl.exe`
 
