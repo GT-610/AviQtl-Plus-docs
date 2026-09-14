@@ -22,8 +22,8 @@ and QML/GLSL effect packages. Select the frontend with
 
 ## Extension paths
 
-- [Effects and objects](./effects): package JSON metadata, QML integration, and
-  fragment or compute shaders.
+- [Effects and objects](./effects): native package JSON metadata and the
+  `aviqtl-wgsl-v1` render contract.
 - [Plugin development](./plugins): LuaJIT automation, lifecycle hooks,
   permissions, and package distribution.
 - Native application development: C++, Qt Quick, timeline services, media

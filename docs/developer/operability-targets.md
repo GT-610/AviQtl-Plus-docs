@@ -95,8 +95,8 @@ right-click creation as AviUtl-like operations.
 ### Objects, Effects, and Filters
 
 AviQtl-Plus should preserve the AviUtl habit of building a scene from objects
-and stacking effects or filters on them. The modern system may use JSON, QML,
-GLSL, and packages internally, but users should experience it as a searchable
+and stacking effects or filters on them. The modern extension system uses JSON,
+WGSL, and packages internally, but users should experience it as a searchable
 object/effect catalog with consistent parameter editing.
 
 - Built-in objects cover common AviUtl-style editing blocks: media, text, shape,
