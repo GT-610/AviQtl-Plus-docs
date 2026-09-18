@@ -26,7 +26,9 @@ ctest --test-dir <干净构建目录> --output-on-failure
 
 - Arch Linux 容器/运行器
 - macOS 运行器
-- Windows MSYS2 UCRT64 运行器
+- Windows MSVC 运行器（Windows 默认构建环境）
+
+MSYS2 是显式选择的替代方案，不是 Rust 默认的 Windows 构建环境。
 
 不要将被跳过的分析工具或测试视为通过的覆盖。任何在未输出 Qt Test 结果的情况下退出的测试进程都应作为启动或运行时失败进行调查。
 

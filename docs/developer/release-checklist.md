@@ -32,7 +32,9 @@ Required platforms:
 
 - Arch Linux container/runner
 - macOS runner
-- Windows MSYS2 UCRT64 runner
+- Windows MSVC runner (default Windows build)
+
+MSYS2 is an explicit alternative and is not the default Rust build environment.
 
 Do not treat skipped analysis tools or tests as passing coverage. Investigate
 any test process that exits without Qt Test output as a startup or runtime

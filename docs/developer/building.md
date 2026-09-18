@@ -55,7 +55,10 @@ python3 BUILD.py --arch
 # macOS Xcode generator
 python3 BUILD.py --xcode
 
-# Windows with MSYS2
+# Windows with the default MSVC toolchain
+python3 BUILD.py
+
+# Windows with MSYS2 (explicit alternative)
 python3 BUILD.py --msys2
 ```
 
@@ -97,7 +100,24 @@ bundle.
 3. **Run**
    - `open ./build/AviQtl.app`
 
-### Windows (MSYS2)
+### Windows (MSVC, default)
+
+Rust requires the MSVC host on Windows, so an unqualified `python3 BUILD.py`
+selects the MSVC builder. MSYS2 remains available as an explicit alternative
+for environments that provide the matching GNU Rust target and dependencies.
+
+1. **Additional prerequisites**
+   - Visual Studio 2022 or newer Build Tools with the C++ x64/x86 toolset and
+     a Windows SDK
+   - vcpkg (can be specified via `VCPKG_ROOT`; `BUILD.py` will attempt to fetch
+     it if not found)
+2. **Build**
+   - `python3 BUILD.py`
+   - To select MSYS2 explicitly, use `python3 BUILD.py --msys2` from an MSYS2 UCRT64 shell.
+3. **Run**
+   - `.\build\AviQtl.exe`
+
+### Windows (MSYS2, explicit alternative)
 
 1. **Install dependencies**
    - `pacman -S git mingw-w64-ucrt-x86_64-python`
@@ -105,28 +125,6 @@ bundle.
    - `python3 BUILD.py --msys2`
 3. **Run**
    - `./build/AviQtl.exe`
-
-### Windows (MSVC)
-
-MSVC builds are supported with Visual Studio 2022 (17.x) or newer only.
-Visual Studio 2019 and earlier cannot be used to build this project. The
-FFmpeg 9.0.1 dependency is built through the repository's vcpkg overlay.
-
-1. **Additional prerequisites**
-   - Visual Studio 2022 or newer Build Tools with the C++ x64/x86 toolset and
-     a Windows SDK
-   - Official Qt MSVC x64 build (for example `msvc2022_64`)
-   - vcpkg (can be specified via `VCPKG_ROOT`; `BUILD.py` will attempt to fetch
-     it if not found)
-   - vcpkg must be able to acquire its Clang tool; `BUILD.py` automatically
-     sets `LIBCLANG_PATH` for the Rust FFmpeg bindings
-2. **Build**
-   - `python3 BUILD.py --msvc`
-   - For the legacy Qt frontend, add `--frontend qt --qt-dir <Qt installation directory>`.
-     If `--qt-dir` is omitted, `qmake6`/`qmake` on `PATH` is used for Qt
-     detection.
-3. **Run**
-   - `.\build\AviQtl.exe`
 
 ## Qt version compatibility
 

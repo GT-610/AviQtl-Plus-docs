@@ -45,7 +45,10 @@ python3 BUILD.py --arch
 # macOS Xcode 生成器
 python3 BUILD.py --xcode
 
-# Windows MSYS2
+# Windows 默认使用 MSVC 工具链
+python3 BUILD.py
+
+# 显式选择 MSYS2 作为替代方案
 python3 BUILD.py --msys2
 ```
 
@@ -82,7 +85,22 @@ Studio 安装，并拒绝旧工具集。使用旧 Qt 前端时还需要匹配的
 3. **运行**
    - `open ./build/AviQtl.app`
 
-### Windows (MSYS2)
+### Windows (MSVC，默认)
+
+Rust 在 Windows 上需要 MSVC 主机工具链，因此不带目标参数的
+`python3 BUILD.py` 会选择 MSVC 构建器。对于提供匹配 GNU Rust
+目标和依赖的环境，仍可显式使用 MSYS2。
+
+1. **额外准备**
+   - Visual Studio 2022 或更高版本的 Build Tools、C++ x64/x86 工具集和 Windows SDK
+   - vcpkg（可通过 `VCPKG_ROOT` 环境变量指定；如未找到，`BUILD.py` 将尝试自动获取）
+2. **构建**
+   - `python3 BUILD.py`
+   - 如需显式选择 MSYS2，请在 MSYS2 UCRT64 shell 中运行 `python3 BUILD.py --msys2`。
+3. **运行**
+   - `.\build\AviQtl.exe`
+
+### Windows (MSYS2，显式替代方案)
 
 1. **安装依赖**
    - `pacman -S git mingw-w64-ucrt-x86_64-python`
@@ -90,24 +108,6 @@ Studio 安装，并拒绝旧工具集。使用旧 Qt 前端时还需要匹配的
    - `python3 BUILD.py --msys2`
 3. **运行**
    - `./build/AviQtl.exe`
-
-### Windows (MSVC)
-
-MSVC 构建仅支持 Visual Studio 2022（17.x）及更高版本。Visual Studio 2019
-及更早版本不能用于构建本项目。FFmpeg 9.0.1 由仓库内的 vcpkg overlay
-负责构建。
-
-1. **额外准备**
-   - Visual Studio 2022 或更高版本的 Build Tools、C++ x64/x86 工具集和 Windows SDK
-   - 官方 Qt 的 MSVC x64 版本（例如 `msvc2022_64`）
-   - vcpkg（可通过 `VCPKG_ROOT` 环境变量指定；如未找到，`BUILD.py` 将尝试自动获取）
-   - vcpkg 必须能够获取其 Clang 工具；`BUILD.py` 会为 Rust 的 FFmpeg 绑定自动设置 `LIBCLANG_PATH`
-2. **构建**
-   - `python3 BUILD.py --msvc`
-   - 使用旧 Qt 前端时，增加 `--frontend qt --qt-dir <Qt 安装目录>`；如省略
-     `--qt-dir`，将通过 `PATH` 中的 `qmake6`/`qmake` 检测 Qt。
-3. **运行**
-   - `.\build\AviQtl.exe`
 
 ## Qt 版本兼容性
 
