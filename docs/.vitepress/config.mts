@@ -42,6 +42,7 @@ const englishDeveloperSidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: 'Developer overview', link: '/developer/' },
       { text: 'Build from source', link: '/developer/building' },
+      { text: 'Running without a GPU', link: '/developer/no-gpu' },
       { text: 'Effects and objects', link: '/developer/effects' },
       { text: 'Plugin development', link: '/developer/plugins' }
     ]
@@ -119,6 +120,7 @@ const chineseDeveloperSidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: '开发者概览', link: '/zh-CN/developer/' },
       { text: '从源码构建', link: '/zh-CN/developer/building' },
+      { text: '无 GPU 环境运行', link: '/zh-CN/developer/no-gpu' },
       { text: '效果与对象', link: '/zh-CN/developer/effects' },
       { text: '插件开发', link: '/zh-CN/developer/plugins' }
     ]
