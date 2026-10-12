@@ -56,8 +56,10 @@ the `#[serde(flatten)]` catch-all on every document type.
 5. **Removing the last midpoint removes the key.** A clip returns to its pre-midpoint
    representation so a project that never used midpoints stays byte-comparable with its Qt form.
 6. **Clip resize, move, split, and merge preserve midpoints.** All are frame-domain operations:
-   - resize from the start shifts every midpoint by the same delta, clamped into the open
-     interval;
+   - a start trim keeps each midpoint on the same timeline moment: the clip origin moves by
+     `start_delta`, so the midpoint shifts by `-start_delta`, clamped into the open interval;
+   - a pure move or any geometry change that leaves the duration untouched keeps the
+     clip-relative positions exactly, because the frames inside the clip did not move;
    - a duration change clamps and drops midpoints that fall outside the new interval;
    - split at frame `f` gives the first half every midpoint below `f`; the second half keeps
      the rest rebased onto its own origin. A midpoint exactly at the cut becomes frame 0 of the
@@ -105,7 +107,8 @@ The project document gains one optional top-level key.
       {"id": 1, "path": "clips/a.mp4", "kind": "video",
        "durationFrames": 240, "inFrame": 30, "outFrame": 210, "name": "a"}
     ],
-    "bins": [{"id": 1, "name": "Footage", "entryIds": [1]}]
+    "bins": [{"id": 1, "name": "Footage", "entryIds": [1]}],
+    "nextEntryId": 2
   }
 }
 ```
@@ -114,13 +117,19 @@ The project document gains one optional top-level key.
 `ProjectDocument::extra`, which is again a `#[serde(flatten)]` map. No version bump is required:
 version 3 is still readable and writable, and the key round-trips.
 
+`nextEntryId` is a monotonic counter that only ever advances: removing an entry does not make its
+id reusable, so a stale reference cannot later attach to a different file. A document saved
+before the counter existed resumes it just past the highest stored id.
+
 ### 2.3 Rules
 
 1. **Probing is the only source of `kind` and `durationFrames`.** They come from
    `plan_media_import`, which already owns the Qt extension rules and the FFmpeg duration probe.
    The bin never guesses.
 2. **In/out are always a valid, non-degenerate range.** `0 <= inFrame < outFrame <= durationFrames`.
-   Setting in or out clamps into that range rather than failing.
+   Setting in or out clamps into that range rather than failing. Re-adding the same file refreshes
+   the probed duration and re-clamps the kept range against it the same way, so a shorter probe
+   never leaves an out point past the end or an in point past it.
 3. **Entries are deduplicated by resolved path**, so dropping the same file twice updates one
    entry instead of creating a second row. Comparison is on the project-relative path when the
    file is inside the project directory, and on the absolute path otherwise.
