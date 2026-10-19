@@ -76,6 +76,13 @@ readable by the same AviUtl build.
 An animated trackbar becomes a two-point keyframe track: the start value at frame 0 and
 the end value at the object's last frame.
 
+### Filter names are localized
+
+AviUtl resolves a filter by its localized `_name`, so the CN pack writes `标准属性` where
+stock ExEdit writes `標準描画`. The importer accepts both spellings and records the one the
+file used, and the exporter writes that string back, so a file from a Japanese install is
+still readable by the same build after a round trip.
+
 ## What is preserved but not rendered
 
 Everything else — ExEdit script objects (自定义物件, 动画效果, カスタムオブジェクト), shape
