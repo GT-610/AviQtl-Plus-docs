@@ -64,6 +64,7 @@ readable by the same AviUtl build.
 | --- | --- |
 | 文本 / テキスト | Text object: text, font, size, colour, outline colour, bold, italic, letter and line spacing, alignment |
 | 图像 / 画像, 视频 / 動画, 音频 / 音声 | Image, video, or audio object, with the referenced path taken from the object's binary data |
+| 图形 / 図形 | Shape object: the built-in figure types become regular polygons (filled rectangle, triangle, pentagon, hexagon, ten-vertex star; the circle becomes a dense polygon), `大小` the drawn half-extent, `长宽比` the aspect, `线宽` the stroke |
 | 标准属性 / 標準描画 (drawing) | Transform effect: position, scale, opacity, Z rotation, blend mode |
 | 模糊, 边缘模糊, 马赛克, 单色化, 裁剪遮罩, 色调修正, 淡化, 锐化, 振动, 镜像, 极坐标变换, 光栅, 方向模糊, 放射模糊, 镜头模糊, 发光, 辉光, 扩散光, 提取边缘, 噪波, 描边, 阴影, 色度键, 亮度键, 渐变, 图像拼贴 | The matching built-in effect, with parameters converted to our units |
 
@@ -91,9 +92,11 @@ disabled entry in the stack.
   easing script, not as a curve identifier. Labels that clearly mean linear, accelerate,
   decelerate, or both are converted; anything else becomes linear and keeps its original
   text on the keyframe.
-- **Shapes are not converted.** ExEdit's 図形 has its own geometry and a figure-type
-  table whose meaning is not established yet; there is no faithful mapping to the shape
-  objects, so the object is preserved as a disabled placeholder.
+- **Bitmap figures are not converted.** A 図形 can also reference a monochrome PNG in the
+  `figure` folder; those arrive as placeholders, only the built-in types are translated.
+- **Text alignment is preserved, not translated.** ExEdit stores `align` as a packed setting
+  whose encoding is not established, so an imported value is written back verbatim and our
+  own alignment number is left at its default.
 - **Media paths are recovered heuristically.** ExEdit stores the referenced file inside a
   per-object binary blob whose layout differs between object types. The importer scans that
   blob for a NUL-terminated path with a media extension. A file that cannot be found is
