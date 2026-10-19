@@ -18,7 +18,9 @@ scene can be handed back to AviUtl.
 - **File → New Project from AviUtl Object File…** starts a project whose resolution, frame
   rate, audio rate, and length come from the file, then imports its objects into the first
   scene, which is what AviUtl's "new project from object file" does.
-- **File → Export AviUtl Object File…** writes the current scene's objects.
+- **File → Export AviUtl Object File…** writes the selected objects, or the whole scene
+  when nothing is selected. ExEdit's export command works on the selection, so this matches
+  it; the status line says which of the two happened.
 
 Both commands work on the object file only. They do not execute ExEdit scripts, and they
 do not make AviQtl-Plus load AviUtl plugins.
