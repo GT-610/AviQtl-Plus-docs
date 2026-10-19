@@ -65,7 +65,7 @@ readable by the same AviUtl build.
 | 文本 / テキスト | Text object: text, font, size, colour, outline colour, bold, italic, letter and line spacing, alignment |
 | 图像 / 画像, 视频 / 動画, 音频 / 音声 | Image, video, or audio object, with the referenced path taken from the object's binary data |
 | 标准属性 / 標準描画 (drawing) | Transform effect: position, scale, opacity, Z rotation, blend mode |
-| 模糊, 边缘模糊, 马赛克, 单色化, 裁剪遮罩, 色调修正, 淡化, 锐化, 振动, 镜像, 极坐标变换, 光栅, 方向模糊, 放射模糊, 镜头模糊, 发光, 描边, 阴影, 色度键, 亮度键, 渐变, 图像拼贴 | The matching built-in effect, with parameters converted to our units |
+| 模糊, 边缘模糊, 马赛克, 单色化, 裁剪遮罩, 色调修正, 淡化, 锐化, 振动, 镜像, 极坐标变换, 光栅, 方向模糊, 放射模糊, 镜头模糊, 发光, 辉光, 扩散光, 提取边缘, 噪波, 描边, 阴影, 色度键, 亮度键, 渐变, 图像拼贴 | The matching built-in effect, with parameters converted to our units |
 
 An animated trackbar becomes a two-point keyframe track: the start value at frame 0 and
 the end value at the object's last frame.
@@ -87,12 +87,13 @@ disabled entry in the stack.
 
 - **Scripts are not executed.** ExEdit scripts are Lua programs with their own API; running
   them is a separate feature, so their output cannot be reproduced yet.
-- **Shapes are not converted.** ExEdit's 図形 has its own geometry and file-based figure
-  types; there is no faithful mapping to the shape objects yet.
 - **Motion identity is approximate.** A trackbar's motion is stored as a label inside an
   easing script, not as a curve identifier. Labels that clearly mean linear, accelerate,
   decelerate, or both are converted; anything else becomes linear and keeps its original
   text on the keyframe.
+- **Shapes are not converted.** ExEdit's 図形 has its own geometry and a figure-type
+  table whose meaning is not established yet; there is no faithful mapping to the shape
+  objects, so the object is preserved as a disabled placeholder.
 - **Media paths are recovered heuristically.** ExEdit stores the referenced file inside a
   per-object binary blob whose layout differs between object types. The importer scans that
   blob for a NUL-terminated path with a media extension. A file that cannot be found is
