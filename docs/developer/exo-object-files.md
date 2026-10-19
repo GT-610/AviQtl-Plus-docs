@@ -87,6 +87,11 @@ The importer never guesses. A filter whose parameter meanings are unconfirmed wo
 otherwise silently change the picture, and a wrong render is much harder to notice than a
 disabled entry in the stack.
 
+Each object also carries routing flags: `group` binds it to a group control, `clipping` clips
+it to the object above, `audio` marks it as an audio object, and `chain` and `camera` change
+what it applies to. AviQtl-Plus has no field for them, so they are stored on the clip in its
+extra fields and written back unchanged.
+
 ExEdit also appends bookkeeping filters of its own — 上层物件缓存 (an upper-object buffer) and
 the frame-buffer capture. They carry no artist intent and AviUtl never shows them as editable
 entries, so they are kept on the clip rather than in the effect stack and written back to the
