@@ -35,6 +35,8 @@ and QML/GLSL effect packages. Select the frontend with
   compatibility goals that guide development.
 - [Timeline edit target rules](./timeline-edit-targets): where timeline commands
   act.
+- [AviUtl object files](./exo-object-files): what `.exo` import and export
+  translate, preserve, and deliberately skip.
 - [Release checklist](./release-checklist): requirements for a valid release.
 
 User workflows remain in the [user guide](/guide/start-here/) so API and architecture

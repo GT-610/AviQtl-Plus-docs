@@ -24,6 +24,7 @@ AviQtl-Plus 以共享的 Rust 工作区（时间线、特效、音频、渲染�
 
 - [AviUtl 操作体验目标](./operability-targets)：指导开发的编辑模型兼容目标。
 - [时间线编辑目标规则](./timeline-edit-targets)：时间线命令作用于何处。
+- [AviUtl 物件文件](./exo-object-files)：`.exo` 导入导出翻译了什么、保留了什么、有意跳过了什么。
 - [发布检查清单](./release-checklist)：有效发布版本的要求。
 
 用户工作流保留在[用户手册](/zh-CN/guide/start-here/)中，避免 API 和架构内容打断任务说明。
