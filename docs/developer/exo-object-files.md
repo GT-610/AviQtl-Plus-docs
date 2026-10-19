@@ -85,6 +85,10 @@ script identifier, its script parameter block, its track and check values, and i
 data. It appears in the effect stack, does nothing to the picture, and is written back
 unchanged when the scene is exported.
 
+A placeholder is inspectable: selecting it shows read-only rows for everything the importer
+kept, including the script identifier and each preserved key. The rows are marked unsupported
+rather than editable, because the effect does not run yet.
+
 When an import leaves placeholders behind, AviQtl-Plus shows a report naming each object or
 filter it preserved. A clean import stays silent, so the dialog only appears when the picture
 may differ from AviUtl. Exporting reports the objects it had to skip the same way.
