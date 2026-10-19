@@ -84,6 +84,11 @@ The importer never guesses. A filter whose parameter meanings are unconfirmed wo
 otherwise silently change the picture, and a wrong render is much harder to notice than a
 disabled entry in the stack.
 
+ExEdit also appends bookkeeping filters of its own — 上层物件缓存 (an upper-object buffer) and
+the frame-buffer capture. They carry no artist intent and AviUtl never shows them as editable
+entries, so they are kept on the clip rather than in the effect stack and written back to the
+file in their original position.
+
 ## Limitations worth knowing
 
 - **Scripts are not executed.** ExEdit scripts are Lua programs with their own API; running
