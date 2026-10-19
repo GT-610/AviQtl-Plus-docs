@@ -11,8 +11,10 @@ filter stack of each object, and every parameter value. AviQtl-Plus reads and wr
 that format, so existing AviUtl material can be brought into a project and a finished
 scene can be handed back to AviUtl.
 
-- **File → Import AviUtl Object File…** appends the file's objects to the current scene
-  as a single undoable edit.
+- **File → Import AviUtl Object File…** appends the file's objects after the current
+  scene's last object, as a single undoable edit.
+- **Dropping an `.exo` file on the timeline** places the file at the pointer, anchored at its
+  earliest object, the way AviUtl does.
 - **File → Export AviUtl Object File…** writes the current scene's objects.
 
 Both commands work on the object file only. They do not execute ExEdit scripts, and they
