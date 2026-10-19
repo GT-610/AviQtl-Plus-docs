@@ -152,10 +152,12 @@ file in their original position.
 - **Text alignment is preserved, not translated.** ExEdit stores `align` as a packed setting
   whose encoding is not established, so an imported value is written back verbatim and our
   own alignment number is left at its default.
-- **Media paths are recovered heuristically.** ExEdit stores the referenced file inside a
+- **Media blobs are preserved, not rebuilt.** ExEdit stores the referenced file inside a
   per-object binary blob whose layout differs between object types. The importer scans that
-  blob for a NUL-terminated path with a media extension. A file that cannot be found is
-  reported by **File → Manage Missing Media**, not silently dropped.
+  blob for a NUL-terminated path with a media extension, and an export with an unchanged path
+  writes the original bytes back untouched. Only a new or edited path gets a constructed blob.
+  A file that cannot be found is reported by **File → Manage Missing Media**, not silently
+  dropped.
 - **Export re-serializes values.** A value is written from the project's current state, so
   an exported file carries canonical number forms (`100.0` where AviUtl wrote `100.00`) and a
   text buffer without its fixed-size NUL padding. AviUtl reads both identically.
