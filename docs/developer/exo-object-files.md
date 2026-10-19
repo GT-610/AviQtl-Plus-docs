@@ -115,6 +115,9 @@ file in their original position.
 - **Some object types cannot be exported.** A scene reference needs a target scene number
   and a camera control needs a target layer; the exporter does not write those, so such
   clips are reported as skipped instead of being written as objects that point nowhere.
+- **An import grows the scene.** If the file reaches past the end of the scene, the scene is
+  extended as part of the same undoable edit, so the tail of the import is not hidden behind
+  the end of the timeline. A longer scene is never shortened by an import.
 - **Layer and frame offsets are fixed at zero.** Imported objects keep their relative
   layout, which matches AviUtl's own "append to the end of the current data" behaviour.
 
