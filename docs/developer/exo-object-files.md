@@ -91,11 +91,12 @@ parameter semantics are known, so a new entry needs evidence for each.
 1. Find the filter in ExEdit's own table. It lists the localized display name, every trackbar
    name with its default, every check name, and the flags word; `exo_mapping.rs` mirrors the
    parts the importer needs.
-2. Match the parameter names against the catalogue effect's own parameters, and confirm the
-   **defaults agree after the scale factor**. This is the step that catches unit mistakes: a
-   percentage stored as `1000` in ExEdit and `100` in our catalogue means a scale of `0.1`,
-   while a default that agrees under no single factor means the units are not established and
-   the filter must stay a placeholder.
+2. Match the parameter names against the catalogue effect's own parameters, and use the
+   stored defaults as a check on the scale: a percentage stored as `1000` in ExEdit and `100`
+   in our catalogue means a scale of `0.1`. A default that disagrees is not automatically a
+   problem - two effects can use different default blur radii - but it means the scale has to
+   be justified some other way, usually by the same quantity appearing at the same scale
+   elsewhere in the table. When nothing justifies it, the filter stays a placeholder.
 3. Add a `FilterMapping` (or an `ObjectMapping` / figure type) with the Chinese, Japanese, and
    English spellings. The CN pack, stock ExEdit, and some tools each spell names differently.
 4. Round-trip a file that contains the filter, with `AVIUTL_SAMPLES` pointing at an AviUtl
