@@ -112,6 +112,9 @@ file in their original position.
 - **Export re-serializes values.** A value is written from the project's current state, so
   an exported file carries canonical number forms (`100.0` where AviUtl wrote `100.00`) and a
   text buffer without its fixed-size NUL padding. AviUtl reads both identically.
+- **Some object types cannot be exported.** A scene reference needs a target scene number
+  and a camera control needs a target layer; the exporter does not write those, so such
+  clips are reported as skipped instead of being written as objects that point nowhere.
 - **Layer and frame offsets are fixed at zero.** Imported objects keep their relative
   layout, which matches AviUtl's own "append to the end of the current data" behaviour.
 
