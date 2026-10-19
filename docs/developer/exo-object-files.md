@@ -15,6 +15,9 @@ scene can be handed back to AviUtl.
   scene's last object, as a single undoable edit.
 - **Dropping an `.exo` file on the timeline** places the file at the pointer, anchored at its
   earliest object, the way AviUtl does.
+- **File → New Project from AviUtl Object File…** starts a project whose resolution, frame
+  rate, audio rate, and length come from the file, then imports its objects into the first
+  scene, which is what AviUtl's "new project from object file" does.
 - **File → Export AviUtl Object File…** writes the current scene's objects.
 
 Both commands work on the object file only. They do not execute ExEdit scripts, and they
