@@ -97,7 +97,8 @@ kept, including the script identifier and each preserved key. The rows are marke
 rather than editable, because the effect does not run yet.
 
 When an import leaves placeholders behind, AviQtl-Plus shows a report naming each object or
-filter it preserved. A clean import stays silent, so the dialog only appears when the picture
+filter it preserved. For a script-backed effect the note names the script, because that is the
+file the user would have to install for the object to work. A clean import stays silent, so the dialog only appears when the picture
 may differ from AviUtl. Exporting reports the objects it had to skip the same way.
 
 The importer never guesses. A filter whose parameter meanings are unconfirmed would
