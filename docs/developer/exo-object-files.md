@@ -83,6 +83,29 @@ stock ExEdit writes `標準描画`. The importer accepts both spellings and reco
 file used, and the exporter writes that string back, so a file from a Japanese install is
 still readable by the same build after a round trip.
 
+## Adding a translation
+
+Mapping is data, not code. An object or filter is translated only when both its name and its
+parameter semantics are known, so a new entry needs evidence for each.
+
+1. Find the filter in ExEdit's own table. It lists the localized display name, every trackbar
+   name with its default, every check name, and the flags word; `exo_mapping.rs` mirrors the
+   parts the importer needs.
+2. Match the parameter names against the catalogue effect's own parameters, and confirm the
+   **defaults agree after the scale factor**. This is the step that catches unit mistakes: a
+   percentage stored as `1000` in ExEdit and `100` in our catalogue means a scale of `0.1`,
+   while a default that agrees under no single factor means the units are not established and
+   the filter must stay a placeholder.
+3. Add a `FilterMapping` (or an `ObjectMapping` / figure type) with the Chinese, Japanese, and
+   English spellings. The CN pack, stock ExEdit, and some tools each spell names differently.
+4. Round-trip a file that contains the filter, with `AVIUTL_SAMPLES` pointing at an AviUtl
+   package: `cargo test -p aviqtl-app --test exo_samples -- --ignored`. The test compares
+   placement, routing flags, filter names, and every value, so a wrong scale or a dropped key
+   fails here rather than in someone's project.
+
+Objects created in AviQtl-Plus use the first alias when no source spelling exists, so put the
+name the pack writes first.
+
 ## What is preserved but not rendered
 
 Everything else — ExEdit script objects (自定义物件, 动画效果, カスタムオブジェクト), shape
