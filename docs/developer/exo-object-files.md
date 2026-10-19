@@ -69,7 +69,7 @@ readable by the same AviUtl build.
 | 图像 / 画像, 视频 / 動画, 音频 / 音声 | Image, video, or audio object, with the referenced path taken from the object's binary data |
 | 图形 / 図形 | Shape object: the built-in figure types become regular polygons (filled rectangle, triangle, pentagon, hexagon, ten-vertex star; the circle becomes a dense polygon), `大小` the drawn half-extent, `长宽比` the aspect, `线宽` the stroke |
 | 标准属性 / 標準描画 (drawing) | Transform effect: position, scale, opacity, Z rotation, blend mode |
-| 模糊, 边缘模糊, 马赛克, 单色化, 裁剪遮罩, 色调修正, 淡化, 锐化, 振动, 镜像, 极坐标变换, 光栅, 方向模糊, 放射模糊, 镜头模糊, 发光, 辉光, 扩散光, 提取边缘, 噪波, 描边, 阴影, 色度键, 亮度键, 渐变, 图像拼贴 | The matching built-in effect, with parameters converted to our units |
+| 模糊, 边缘模糊, 马赛克, 单色化, 裁剪遮罩, 斜向裁剪, 色调修正, 淡化, 锐化, 振动, 镜像, 极坐标变换, 光栅, 方向模糊, 放射模糊, 镜头模糊, 发光, 辉光, 扩散光, 提取边缘, 噪波, 描边, 阴影, 色度键, 亮度键, 渐变, 图像拼贴 | The matching built-in effect, with parameters converted to our units |
 
 An animated trackbar becomes a two-point keyframe track: the start value at frame 0 and
 the end value at the object's last frame.
