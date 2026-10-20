@@ -1,21 +1,20 @@
 ---
 title: AviUtl object files (.exo)
-description: How AviQtl-Plus reads and writes AviUtl ExEdit object files, and exactly what is translated.
+description: How AviQtl-Plus reads AviUtl ExEdit object files, and exactly what it translates.
 ---
 
 # AviUtl object files (`.exo`)
 
 AviUtl ExEdit can save a selection of objects as an **object file** with the `.exo`
 extension: a small text document that carries object positions, layer numbers, the
-filter stack of each object, and every parameter value. AviQtl-Plus reads and writes
-that format, so existing AviUtl material can be brought into a project and a finished
-scene can be handed back to AviUtl.
+filter stack of each object, and every parameter value. AviQtl-Plus **reads** that format,
+so existing AviUtl material can be brought into a project.
 
-This is the **compatibility** path, in both directions. ExEdit's object model is narrower
-than this project's, so an export writes only the objects it can describe and reports the
-rest as skipped, and an import turns anything it cannot translate into a disabled
-placeholder rather than guessing. For work that stays inside AviQtl-Plus use a
-[fragment](./fragment-files) instead: same commands, no translation, nothing dropped.
+This is the **compatibility** path, and it runs one way. ExEdit's object model is narrower
+than this project's, so an import translates what it can prove and turns anything else into a
+disabled placeholder rather than guessing. Writing an object file back out would have to drop
+whatever AviQtl-Plus can express and ExEdit cannot, so AviQtl-Plus does not write one: use a
+[fragment](./fragment-files) to move work between projects.
 
 - **File → Import AviUtl Object File (Compatibility)…** appends the file's objects after the current
   scene's last object, as a single undoable edit.
@@ -24,11 +23,8 @@ placeholder rather than guessing. For work that stays inside AviQtl-Plus use a
 - **File → New Project from AviUtl Object File…** starts a project whose resolution, frame
   rate, audio rate, and length come from the file, then imports its objects into the first
   scene, which is what AviUtl's "new project from object file" does.
-- **File → Export AviUtl Object File (Compatibility)…** writes the selected objects, or the whole scene
-  when nothing is selected. ExEdit's export command works on the selection, so this matches
-  it; the status line says which of the two happened.
 
-Both commands work on the object file only. They do not execute ExEdit scripts, and they
+These commands work on the object file only. They do not execute ExEdit scripts, and they
 do not make AviQtl-Plus load AviUtl plugins.
 
 ## What the format contains
@@ -65,11 +61,8 @@ frame 10 in AviQtl-Plus. A trackbar that animates is stored as
 
 AviUtl writes strings in the operating system's ANSI code page, not in Unicode. The
 Chinese translation packs therefore produce GBK, a stock Japanese install produces
-Shift-JIS, and hand-edited files are often UTF-8. The importer detects the encoding per
-file and records it on every imported object, and the exporter writes the file in that same
-code page, so a file that is imported and exported again stays readable by the AviUtl build it
-came from. A project created here has no source code page and is written as GBK, which is what
-the translation packs expect.
+Shift-JIS, and hand-edited files are often UTF-8. The importer detects the encoding per file,
+so a file from either pack reads correctly without asking the user which one it is.
 
 ## What is translated
 
@@ -87,9 +80,8 @@ the end value at the object's last frame.
 ### Filter names are localized
 
 AviUtl resolves a filter by its localized `_name`, so the CN pack writes `标准属性` where
-stock ExEdit writes `標準描画`. The importer accepts both spellings and records the one the
-file used, and the exporter writes that string back, so a file from a Japanese install is
-still readable by the same build after a round trip.
+stock ExEdit writes `標準描画`. The importer accepts every spelling it knows and treats them
+as the same filter.
 
 ## Adding a translation
 
@@ -107,10 +99,11 @@ parameter semantics are known, so a new entry needs evidence for each.
    elsewhere in the table. When nothing justifies it, the filter stays a placeholder.
 3. Add a `FilterMapping` (or an `ObjectMapping` / figure type) with the Chinese, Japanese, and
    English spellings. The CN pack, stock ExEdit, and some tools each spell names differently.
-4. Round-trip a file that contains the filter, with `AVIUTL_SAMPLES` pointing at an AviUtl
-   package: `cargo test -p aviqtl-app --test exo_samples -- --ignored`. The test compares
-   placement, routing flags, filter names, and every value, so a wrong scale or a dropped key
-   fails here rather than in someone's project.
+4. Import a file that contains the filter, with `AVIUTL_SAMPLES` pointing at an AviUtl
+   package: `cargo test -p aviqtl-app --test exo_samples -- --ignored`. The test imports every
+   shipped file and checks that each object becomes a clip with the placement the file gave it
+   and that nothing preserved was dropped, so a filter that stops translating shows up here
+   rather than in someone's project.
 
 Objects created in AviQtl-Plus use the first alias when no source spelling exists, so put the
 name the pack writes first.
@@ -121,8 +114,11 @@ Everything else — ExEdit script objects (自定义物件, 动画效果, カス
 objects, cameras, group controls, audio filters, and any effect without a confirmed
 equivalent — is imported as a **disabled placeholder**: the object keeps its name, its
 script identifier, its script parameter block, its track and check values, and its binary
-data. It appears in the effect stack, does nothing to the picture, and is written back
-unchanged when the scene is exported.
+data. It appears in the effect stack, and does nothing to the picture.
+
+A placeholder is a record rather than a working effect: its job is to keep what the file said
+visible and intact inside the project, so the same material can be carried on later — by saving
+it as a fragment, or by whatever runs ExEdit scripts in the future.
 
 A placeholder is inspectable: selecting it shows read-only rows for everything the importer
 kept, including the script identifier and each preserved key. The rows are marked unsupported
@@ -131,7 +127,7 @@ rather than editable, because the effect does not run yet.
 When an import leaves placeholders behind, AviQtl-Plus shows a report naming each object or
 filter it preserved. For a script-backed effect the note names the script, because that is the
 file the user would have to install for the object to work. A clean import stays silent, so the dialog only appears when the picture
-may differ from AviUtl. Exporting reports the objects it had to skip the same way.
+may differ from AviUtl.
 
 The importer never guesses. A filter whose parameter meanings are unconfirmed would
 otherwise silently change the picture, and a wrong render is much harder to notice than a
@@ -140,12 +136,12 @@ disabled entry in the stack.
 Each object also carries routing flags: `group` binds it to a group control, `clipping` clips
 it to the object above, `audio` marks it as an audio object, and `chain` and `camera` change
 what it applies to. AviQtl-Plus has no field for them, so they are stored on the clip in its
-extra fields and written back unchanged.
+extra fields rather than being dropped.
 
 ExEdit also appends bookkeeping filters of its own — 上层物件缓存 (an upper-object buffer) and
 the frame-buffer capture. They carry no artist intent and AviUtl never shows them as editable
-entries, so they are kept on the clip rather than in the effect stack and written back to the
-file in their original position.
+entries. They are skipped: adding them to the stack would show a filter AviUtl never
+displayed, and they carry nothing a renderer needs.
 
 ## Limitations worth knowing
 
@@ -158,20 +154,13 @@ file in their original position.
 - **Bitmap figures are not converted.** A 図形 can also reference a monochrome PNG in the
   `figure` folder; those arrive as placeholders, only the built-in types are translated.
 - **Text alignment is preserved, not translated.** ExEdit stores `align` as a packed setting
-  whose encoding is not established, so an imported value is written back verbatim and our
-  own alignment number is left at its default.
-- **Media blobs are preserved, not rebuilt.** ExEdit stores the referenced file inside a
+  whose encoding is not established, so an imported value is kept verbatim and our own
+  alignment number is left at its default.
+- **Media blobs are read for the path only.** ExEdit stores the referenced file inside a
   per-object binary blob whose layout differs between object types. The importer scans that
-  blob for a NUL-terminated path with a media extension, and an export with an unchanged path
-  writes the original bytes back untouched. Only a new or edited path gets a constructed blob.
-  A file that cannot be found is reported by **File → Manage Missing Media**, not silently
-  dropped.
-- **Export re-serializes values.** A value is written from the project's current state, so
-  an exported file carries canonical number forms (`100.0` where AviUtl wrote `100.00`) and a
-  text buffer without its fixed-size NUL padding. AviUtl reads both identically.
-- **Some object types cannot be exported.** A scene reference needs a target scene number
-  and a camera control needs a target layer; the exporter does not write those, so such
-  clips are reported as skipped instead of being written as objects that point nowhere.
+  blob for a NUL-terminated path with a media extension and keeps the blob alongside it; the
+  path is what the clip actually uses. A file that cannot be found is reported by
+  **File → Manage Missing Media**, not silently dropped.
 - **An import grows the scene.** If the file reaches past the end of the scene, the scene is
   extended as part of the same undoable edit, so the tail of the import is not hidden behind
   the end of the timeline. A longer scene is never shortened by an import.
@@ -182,8 +171,7 @@ file in their original position.
 
 ## Related
 
-- [Fragment files](./fragment-files) — the native format to use when the other end is
-  not AviUtl.
+- [Fragment files](./fragment-files) — the native format for saving a block of clips.
 - [AviUtl operability targets](./operability-targets) — the editing-model goals this
   feature serves.
 - [Effects and objects](./effects) — the catalogue an imported object is translated into.

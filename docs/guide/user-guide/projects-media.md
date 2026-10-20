@@ -40,9 +40,11 @@ clips, or the whole scene when nothing is selected; **File → Insert Fragment�
 them back, and dropping the file on the timeline places it at the pointer.
 
 A fragment keeps everything the project keeps, including effects and parameters that
-have no AviUtl equivalent. Use it to move work between AviQtl-Plus projects. Use
-**File → Export AviUtl Object File (Compatibility)…** only when the other end is
-AviUtl: that format cannot hold everything, and the export reports what it had to skip.
+have no AviUtl equivalent, so it is the way work moves between AviQtl-Plus projects.
+
+AviUtl object files (`.exo`) can be imported, but not written: **File → Import AviUtl
+Object File (Compatibility)…** brings AviUtl material in, and the report says what it
+translated and what it had to keep as a disabled placeholder.
 
 ## Save habits
 

@@ -1,6 +1,6 @@
 ---
 title: Fragment files (.aviqtlfrag)
-description: How AviQtl-Plus saves a block of clips as a fragment, and why that is the default export rather than an AviUtl object file.
+description: How AviQtl-Plus saves a block of clips as a fragment, and how that differs from an AviUtl object file.
 ---
 
 # Fragment files (`.aviqtlfrag`)
@@ -10,13 +10,13 @@ scene's worth of layered objects. It is what a user reaches for when work has to
 project it was made in.
 
 AviUtl solves the same problem with the [object file](./exo-object-files) (`.exo`), and
-AviQtl-Plus reads those. Writing one, though, means translating every clip into ExEdit's
-vocabulary, and that vocabulary is smaller: whatever AviQtl-Plus can express and ExEdit cannot
-has to be dropped. Guessing at a mapping for something ExEdit does not have would be worse
-than dropping it, because the file would look complete and render differently.
+AviQtl-Plus reads those. It does not write them: an object file would have to translate every
+clip into ExEdit's vocabulary, which is smaller than this project's, so whatever AviQtl-Plus can
+express and ExEdit cannot would have to be dropped — or, worse, guessed at, producing a file
+that looks complete and renders differently.
 
-A fragment has neither problem. It stores the project's own clip representation, so nothing is
-translated and nothing is lost.
+A fragment stores the project's own clip representation instead, so nothing is translated and
+nothing is lost.
 
 - **File → Insert Fragment…** appends the file's clips after the current scene's last clip, as
   one undoable edit.
@@ -29,14 +29,14 @@ translated and nothing is lost.
 
 | | Fragment (`.aviqtlfrag`) | AviUtl object file (`.exo`) |
 | --- | --- | --- |
-| Import | Lossless | Translated; anything unknown becomes a disabled placeholder |
-| Export | Lossless, every clip | Only the objects ExEdit can describe; the rest is reported as skipped |
-| Opens in AviUtl | No | Yes |
+| Reading | Lossless | Translated; anything unknown becomes a disabled placeholder |
+| Writing | Lossless, every clip | Not supported — AviQtl-Plus does not write one |
 | Reads AviUtl material | No | Yes |
 | Keeps AviQtl-Plus-only parameters | Yes | No |
 
-Reach for a fragment to move work between AviQtl-Plus projects, and for an object file only
-when the other end is AviUtl.
+A fragment is the only way work leaves a project, in either direction. An object file is the
+way material comes in from AviUtl, and it stays that way: a one-way door, so nothing this
+project knows has to be thrown away to fit through it.
 
 ## File format
 
