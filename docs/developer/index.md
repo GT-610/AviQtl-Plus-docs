@@ -35,6 +35,8 @@ and QML/GLSL effect packages. Select the frontend with
   compatibility goals that guide development.
 - [Timeline edit target rules](./timeline-edit-targets): where timeline commands
   act.
+- [Fragment files](./fragment-files): the native format for saving a block of
+  clips, and how it relates to the AviUtl object file.
 - [AviUtl object files](./exo-object-files): what `.exo` import and export
   translate, preserve, and deliberately skip.
 - [Release checklist](./release-checklist): requirements for a valid release.

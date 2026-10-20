@@ -53,6 +53,7 @@ const englishDeveloperSidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: 'AviUtl operability targets', link: '/developer/operability-targets' },
       { text: 'Timeline edit target rules', link: '/developer/timeline-edit-targets' },
+      { text: 'Fragment files (.aviqtlfrag)', link: '/developer/fragment-files' },
       { text: 'AviUtl object files (.exo)', link: '/developer/exo-object-files' },
       { text: 'Release checklist', link: '/developer/release-checklist' }
     ]
@@ -132,6 +133,7 @@ const chineseDeveloperSidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: 'AviUtl 操作体验目标', link: '/zh-CN/developer/operability-targets' },
       { text: '时间线编辑目标规则', link: '/zh-CN/developer/timeline-edit-targets' },
+      { text: '片段文件（.aviqtlfrag）', link: '/zh-CN/developer/fragment-files' },
       { text: 'AviUtl 物件文件（.exo）', link: '/zh-CN/developer/exo-object-files' },
       { text: '发布检查清单', link: '/zh-CN/developer/release-checklist' }
     ]

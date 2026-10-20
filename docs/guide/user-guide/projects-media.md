@@ -32,6 +32,18 @@ my-video/
 └── exports/
 ```
 
+## Fragments
+
+A fragment (`.aviqtlfrag`) is a block of clips saved on its own, so it can be used
+again in another scene or project. **File → Export Fragment…** writes the selected
+clips, or the whole scene when nothing is selected; **File → Insert Fragment…** adds
+them back, and dropping the file on the timeline places it at the pointer.
+
+A fragment keeps everything the project keeps, including effects and parameters that
+have no AviUtl equivalent. Use it to move work between AviQtl-Plus projects. Use
+**File → Export AviUtl Object File (Compatibility)…** only when the other end is
+AviUtl: that format cannot hold everything, and the export reports what it had to skip.
+
 ## Save habits
 
 - Save as soon as a project is created.

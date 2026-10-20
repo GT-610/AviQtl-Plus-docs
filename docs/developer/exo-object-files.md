@@ -11,14 +11,20 @@ filter stack of each object, and every parameter value. AviQtl-Plus reads and wr
 that format, so existing AviUtl material can be brought into a project and a finished
 scene can be handed back to AviUtl.
 
-- **File → Import AviUtl Object File…** appends the file's objects after the current
+This is the **compatibility** path, in both directions. ExEdit's object model is narrower
+than this project's, so an export writes only the objects it can describe and reports the
+rest as skipped, and an import turns anything it cannot translate into a disabled
+placeholder rather than guessing. For work that stays inside AviQtl-Plus use a
+[fragment](./fragment-files) instead: same commands, no translation, nothing dropped.
+
+- **File → Import AviUtl Object File (Compatibility)…** appends the file's objects after the current
   scene's last object, as a single undoable edit.
 - **Dropping an `.exo` file on the timeline** places the file at the pointer, anchored at its
   earliest object, the way AviUtl does.
 - **File → New Project from AviUtl Object File…** starts a project whose resolution, frame
   rate, audio rate, and length come from the file, then imports its objects into the first
   scene, which is what AviUtl's "new project from object file" does.
-- **File → Export AviUtl Object File…** writes the selected objects, or the whole scene
+- **File → Export AviUtl Object File (Compatibility)…** writes the selected objects, or the whole scene
   when nothing is selected. ExEdit's export command works on the selection, so this matches
   it; the status line says which of the two happened.
 
@@ -169,11 +175,15 @@ file in their original position.
 - **An import grows the scene.** If the file reaches past the end of the scene, the scene is
   extended as part of the same undoable edit, so the tail of the import is not hidden behind
   the end of the timeline. A longer scene is never shortened by an import.
-- **Layer and frame offsets are fixed at zero.** Imported objects keep their relative
-  layout, which matches AviUtl's own "append to the end of the current data" behaviour.
+- **An import moves rather than overlaps.** When the file would land on frames that
+  already hold objects, the whole block moves forward and the report says by how much.
+  ExEdit refuses to load onto occupied positions, so laying an import on top would leave
+  two objects sharing a layer and a frame.
 
 ## Related
 
+- [Fragment files](./fragment-files) — the native format to use when the other end is
+  not AviUtl.
 - [AviUtl operability targets](./operability-targets) — the editing-model goals this
   feature serves.
 - [Effects and objects](./effects) — the catalogue an imported object is translated into.
