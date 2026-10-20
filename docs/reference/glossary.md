@@ -21,6 +21,9 @@ This page is not finished yet.
 **Frame**
 : One still image in a video sequence and the basic unit of timeline timing.
 
+**Fragment**
+: A `.aviqtlfrag` file holding a block of clips, saved so it can be inserted into another scene or project without losing anything.
+
 **Keyframe**
 : A stored parameter value at a particular time. Values between keyframes can be
   interpolated.
