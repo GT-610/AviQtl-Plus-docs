@@ -78,6 +78,10 @@ A fragment is UTF-8 JSON, with a marker that tells it apart from a project docum
 The largest fragment this build will read is 64 MiB, and the largest clip count is 100,000.
 A fragment references media by path; it does not contain the media itself.
 
+Because both files are JSON, the project loader checks the marker first: opening a fragment
+with **File → Open Project…** is refused with a message naming the command that does open it,
+instead of producing a project with no scenes and the fragment's clips nowhere in sight.
+
 ## What an import does
 
 1. Every clip gets a fresh id from the scene's own id space, so importing the same fragment
