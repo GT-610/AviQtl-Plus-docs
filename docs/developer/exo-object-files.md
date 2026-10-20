@@ -60,8 +60,10 @@ frame 10 in AviQtl-Plus. A trackbar that animates is stored as
 AviUtl writes strings in the operating system's ANSI code page, not in Unicode. The
 Chinese translation packs therefore produce GBK, a stock Japanese install produces
 Shift-JIS, and hand-edited files are often UTF-8. The importer detects the encoding per
-file and remembers it, so a file that is imported and exported again keeps its bytes
-readable by the same AviUtl build.
+file and records it on every imported object, and the exporter writes the file in that same
+code page, so a file that is imported and exported again stays readable by the AviUtl build it
+came from. A project created here has no source code page and is written as GBK, which is what
+the translation packs expect.
 
 ## What is translated
 
