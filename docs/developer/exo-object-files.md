@@ -61,7 +61,7 @@ frame 10 in AviQtl-Plus. A trackbar that animates is stored as
 
 AviUtl writes strings in the operating system's ANSI code page, not in Unicode. The
 Chinese translation packs therefore produce GBK, a stock Japanese install produces
-Shift-JIS, and hand-edited files are often UTF-8. The importer detects the encoding per file,
+CP932 (the code page usually called Shift-JIS), and hand-edited files are often UTF-8. The importer detects the encoding per file,
 so a file from either pack reads correctly without asking the user which one it is.
 
 ## What is translated
@@ -70,7 +70,7 @@ so a file from either pack reads correctly without asking the user which one it 
 | --- | --- |
 | 文本 / テキスト | Text object: text, font, size, colour, outline colour, bold, italic, letter and line spacing, alignment |
 | 图像 / 画像, 视频 / 動画, 音频 / 音声 | Image, video, or audio object, with the referenced path taken from the object's binary data |
-| 图形 / 図形 | Shape object: the built-in figure types become regular polygons (filled rectangle, triangle, pentagon, hexagon, ten-vertex star; the circle becomes a dense polygon), `大小` the drawn half-extent, `长宽比` the aspect, `线宽` the stroke |
+| 图形 / 図形 | Shape object: the built-in figure type becomes a regular polygon. The stored value counts from zero in the order the dialog lists them — 背景 (rectangle), 円 (a dense polygon), 四角形, 三角形, 五角形, 六角形, 星型 — and `大小` / サイズ is the drawn half-extent, `长宽比` / 縦横比 the aspect, `线宽` / ライン幅 the stroke |
 | 标准属性 / 標準描画 (drawing) | Transform effect: position, scale, opacity, Z rotation, blend mode |
 | 模糊, 边缘模糊, 马赛克, 单色化, 裁剪遮罩, 斜向裁剪, 色调修正, 淡化, 锐化, 振动, 镜像, 极坐标变换, 光栅, 方向模糊, 放射模糊, 镜头模糊, 发光, 辉光, 扩散光, 提取边缘, 噪波, 描边, 阴影, 色度键, 亮度键, 渐变, 图像拼贴 | The matching built-in effect, with parameters converted to our units |
 
@@ -153,9 +153,11 @@ displayed, and they carry nothing a renderer needs.
   text on the keyframe.
 - **Bitmap figures are not converted.** A 図形 can also reference a monochrome PNG in the
   `figure` folder; those arrive as placeholders, only the built-in types are translated.
-- **Text alignment is preserved, not translated.** ExEdit stores `align` as a packed setting
-  whose encoding is not established, so an imported value is kept verbatim and our own
-  alignment number is left at its default.
+- **Text alignment covers the horizontal choice and drops the vertical one.** ExEdit numbers
+  `align` as an index into its 文字揃え list: 0/1/2 are left/centre/right on the top row, 3/4/5
+  the same three centred vertically, and so on, with 9 and above meaning 縦書き. The horizontal
+  choice is translated; the vertical one and the vertical-writing modes have no counterpart
+  here, so those keep the default and the original value stays on the object.
 - **Media blobs are read for the path only.** ExEdit stores the referenced file inside a
   per-object binary blob whose layout differs between object types. The importer scans that
   blob for a NUL-terminated path with a media extension and keeps the blob alongside it; the
