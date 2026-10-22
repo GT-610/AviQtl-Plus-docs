@@ -26,10 +26,11 @@ to run.
 
 ### Linux
 
-Linux builds require a current Qt 6, FFmpeg, LuaJIT, a Vulkan implementation,
-Carla, and Clang/libc++. An Arch Linux-equivalent environment is the primary
-target. On older distributions, using an Arch container through Distrobox is
-recommended.
+Linux builds require a Vulkan-capable graphics driver and its Vulkan runtime,
+the FFmpeg shared libraries, libxkbcommon, and the X11 or Wayland client
+libraries. Carla is required only for VST3 and LV2 audio effects. An Arch
+Linux-equivalent environment is the primary target. On older distributions,
+using an Arch container through Distrobox is recommended.
 
 You may need to grant execute permission after extracting the archive:
 
@@ -45,6 +46,13 @@ We're also planning platform-specific packages and AppImage release. These will 
 Open the application bundle from Finder. If macOS blocks the first launch,
 review the application in **System Settings → Privacy & Security** and allow it
 only when it was downloaded from the official release.
+
+## Requirements
+
+AviQtl renders on the GPU: the preview, the export pipeline, and hardware codec
+acceleration all need a GPU-backed adapter. A host that exposes only a software
+renderer, such as the Microsoft Basic Render Driver, is reported as unsupported
+at startup instead of failing later.
 
 ## First launch checklist
 

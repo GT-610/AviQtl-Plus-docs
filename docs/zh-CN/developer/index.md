@@ -5,7 +5,7 @@ description: 构建、理解、扩展并参与 AviQtl-Plus 开发。
 
 # 开发者文档
 
-AviQtl-Plus 以共享的 Rust 工作区（时间线、特效、音频、渲染、媒体）为基础，提供两个前端：默认的 **Rust + Slint** 界面（建设中），以及旧 **C++23 / Qt 6 + Qt Quick** 界面（含 QRhi 渲染、面向 ECS 的时间线数据、FFmpeg 媒体处理、LuaJIT 插件和 QML/GLSL 效果包）。用 `BUILD.py --frontend {slint,qt}` 选择前端（默认 `slint`）。
+AviQtl-Plus 以共享的 Rust 工作区（时间线、特效、音频、渲染、媒体）为基础，提供两个前端：默认且随版本发布的 **Rust + Slint + wgpu** 界面，以及旧 **C++23 / Qt 6 + Qt Quick** 界面（含 QRhi 渲染、面向 ECS 的时间线数据、FFmpeg 媒体处理、LuaJIT 插件和 QML/GLSL 效果包）。Qt 前端仅作为行为参照保留，不包含在发布归档中。用 `BUILD.py --frontend {slint,qt}` 选择前端（默认 `slint`）。
 
 ## 开始贡献
 
@@ -17,7 +17,7 @@ AviQtl-Plus 以共享的 Rust 工作区（时间线、特效、音频、渲染�
 ## 扩展方向
 
 - [效果与对象](./effects)：原生包 JSON 元数据与 `aviqtl-wgsl-v1` 渲染契约。
-- [插件开发](./plugins)：LuaJIT 自动化、生命周期钩子、权限和包分发。
+- [插件开发](./plugins)：Lua 自动化、生命周期钩子、权限和包分发。
 - 原生应用开发：主仓库中的 C++、Qt Quick、时间线服务、媒体解码、渲染、音频与测试。
 
 ## 产品目标与工作流

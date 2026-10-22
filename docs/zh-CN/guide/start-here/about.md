@@ -14,7 +14,7 @@ AviQtl-Plus 是一款自由、开源的视频编辑软件，继承 **AviUtl 1.10
 - 与 AviUtl 极为相似的用户界面。
 - 使用 GPU 实现的**高速强大特效**。
 - 通过 Carla 支持 VST3、LV2 等**音频特效**。
-- **LuaJIT 插件系统**，支持包管理、声明式参数和权限控制。
+- **Lua 插件系统**，支持包管理、声明式参数和权限控制。
 - 支持 **Linux**、**Windows**、**macOS** 三大平台。
 
 [AviUtl 操作体验目标](../../developer/operability-targets) 描述了指导开发的编辑模型兼容目标。

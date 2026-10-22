@@ -17,7 +17,10 @@ operating system, graphics hardware, and exact steps that reproduce the issue.
 ## The application does not start
 
 - Confirm that the archive was fully extracted.
-- On Linux, verify Qt 6, FFmpeg, LuaJIT, Vulkan, Carla, and Clang/libc++.
+- On Linux, verify the Vulkan driver and runtime, the FFmpeg shared libraries,
+  libxkbcommon, and the X11 or Wayland client libraries.
+- If startup reports that no GPU-backed adapter was found, update the graphics
+  driver; a software renderer cannot run AviQtl.
 - Update the graphics driver or Vulkan/Metal/Direct3D runtime.
 - Start from a terminal and keep the diagnostic output.
 

@@ -19,7 +19,7 @@ Its key strengths are:
 - A user interface closely resembling AviUtl.
 - Fast and powerful GPU-accelerated effects.
 - Support for audio effects such as VST3 and LV2 through Carla.
-- A LuaJIT plugin system with package management, declarative parameters, and
+- A Lua plugin system with package management, declarative parameters, and
   permission control.
 - Cross-platform support for **Linux**, **Windows**, and **macOS**.
 

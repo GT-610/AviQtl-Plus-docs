@@ -16,7 +16,8 @@ description: 排查启动、媒体、预览、性能、插件与导出问题。
 ## 应用无法启动
 
 - 确认压缩包已经完整解压。
-- Linux 上检查 Qt 6、FFmpeg、LuaJIT、Vulkan、Carla 和 Clang/libc++。
+- Linux 上检查 Vulkan 驱动与运行环境、FFmpeg 共享库、libxkbcommon，以及 X11 或 Wayland 客户端库。
+- 如果启动时提示未找到可用的 GPU 适配器，请更新显卡驱动；软件渲染器无法运行 AviQtl。
 - 更新显卡驱动或 Vulkan、Metal、Direct3D 运行环境。
 - 从终端启动并保留诊断输出。
 
