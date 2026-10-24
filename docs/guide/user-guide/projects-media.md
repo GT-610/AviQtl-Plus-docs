@@ -46,9 +46,10 @@ opens it; the **Media** button in the scene strip toggles it.
   the default clip length.
 - **Insert at Playhead** places the selected range at the current playhead and
   selected layer, searching forward for a free place when something is already
-  there. **Overwrite** places it at the playhead exactly and replaces whatever
+  there. **Overwrite** places it at the playhead exactly and replaces what
   occupies that range on the target layer (and the linked audio layer for a
-  video). Both are one undo step.
+  video). A clip that merely overlaps the range is split at its edge, so the
+  part outside the range is kept. Both are one undo step.
 - **Group** is a flat, project-scoped label for finding media. An entry belongs to
   at most one group. A group can be created, renamed, removed, or cleared from an
   entry; removing or clearing a group never removes media or touches the timeline.
