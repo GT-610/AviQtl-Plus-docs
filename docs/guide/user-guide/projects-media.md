@@ -32,6 +32,32 @@ my-video/
 └── exports/
 ```
 
+## Media library
+
+The timeline window has a docked **Media Library** that lists files the project
+knows about, whether or not a clip currently uses them. **View → Media Library**
+opens it; the **Media** button in the scene strip toggles it.
+
+- **Add Media…** probes the files once and stores their kind and source length in
+  the project. Adding the same file twice updates one row instead of creating a
+  duplicate.
+- Each row keeps an **In** and **Out** point. Those points are the default range
+  for every insert; an image has no seekable source, so its range only describes
+  the default clip length.
+- **Insert at Playhead** places the selected range at the current playhead and
+  selected layer, searching forward for a free place when something is already
+  there. **Overwrite** places it at the playhead exactly and replaces whatever
+  occupies that range on the target layer (and the linked audio layer for a
+  video). Both are one undo step.
+- **Group** is a flat, project-scoped label for finding media. An entry belongs to
+  at most one group. A group can be created, renamed, removed, or cleared from an
+  entry; removing or clearing a group never removes media or touches the timeline.
+- The search field matches both the file name and the stored path, and the group
+  picker narrows the list further.
+
+The library never owns the timeline: removing an entry leaves every clip alone,
+and a clip keeps working when its entry is gone.
+
 ## Fragments
 
 A fragment (`.aviqtlfrag`) is a block of clips saved on its own, so it can be used
