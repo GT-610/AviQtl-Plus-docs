@@ -130,7 +130,5 @@ or commercial pressures. Progress is steady but paced.
 **Long-term:**
 
 - A full-featured video editor suitable as an AviUtl replacement.
-- Potential rebranding (name and logo) to reflect the independent direction of
-  the project.
 - Continue monitoring the new NeoUtl and exploring cross-pollination
   opportunities between the projects.

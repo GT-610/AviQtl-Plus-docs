@@ -58,8 +58,14 @@ AviQtl-Plus fundamentally resolves structural weaknesses:
 
 ## Origin of the name and icon?
 
-The name is a portmanteau of "AviUtl" and "Qt".
-The icon is a design combining the Qt and AviUtl logos.
+The project was called **AviQtl-Plus** until 0.8: a portmanteau of "AviUtl" and
+"Qt", with an icon that combined the Qt and AviUtl logos.
+
+It is now called **Freya NLE**, and the mark follows the name. The filmstrip,
+the chamfered plate, and the pixel spark are kept from the earlier icon, so the
+mark still reads as the same project. The plus sign became an **F**, because
+"Plus" no longer described the project, and the palette moved from green to a
+light blue.
 
 ## Can I use AviUtl plugins?
 
