@@ -43,7 +43,7 @@ real text rendering, which is what one would expect to fail first.
    inside `d3dcompiler_47.dll` before the first window appears.
 
 Blocker 2 is **pre-existing and not specific to this checkout**: the packaged
-`dist/AviQtl-MSVC-x86_64.zip` built before these probes fails identically, and the
+`dist/Freya-NLE-MSVC-x86_64.zip` built before these probes fails identically, and the
 September 2026 code audit already recorded the same crash while stating that neither
 attempt counted as successful GUI validation.
 
