@@ -52,6 +52,7 @@ const englishDeveloperSidebar: DefaultTheme.SidebarItem[] = [
     collapsed: false,
     items: [
       { text: 'AviUtl operability targets', link: '/developer/operability-targets' },
+      { text: 'AviUtl2 function parity', link: '/developer/aviutl2-function-parity' },
       { text: 'Timeline edit target rules', link: '/developer/timeline-edit-targets' },
       { text: 'Fragment files (.aviqtlfrag)', link: '/developer/fragment-files' },
       { text: 'AviUtl object files (.exo)', link: '/developer/exo-object-files' },
@@ -132,6 +133,7 @@ const chineseDeveloperSidebar: DefaultTheme.SidebarItem[] = [
     collapsed: false,
     items: [
       { text: 'AviUtl 操作体验目标', link: '/zh-CN/developer/operability-targets' },
+      { text: 'AviUtl2 功能对齐', link: '/zh-CN/developer/aviutl2-function-parity' },
       { text: '时间线编辑目标规则', link: '/zh-CN/developer/timeline-edit-targets' },
       { text: '片段文件（.aviqtlfrag）', link: '/zh-CN/developer/fragment-files' },
       { text: 'AviUtl 物件文件（.exo）', link: '/zh-CN/developer/exo-object-files' },

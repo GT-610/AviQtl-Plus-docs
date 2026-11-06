@@ -23,6 +23,8 @@ AviQtl-Plus 以共享的 Rust 工作区（时间线、特效、音频、渲染�
 ## 产品目标与工作流
 
 - [AviUtl 操作体验目标](./operability-targets)：指导开发的编辑模型兼容目标。
+- [AviUtl2 功能对齐](./aviutl2-function-parity)：从 AviUtl2 采纳了什么、保留了什么，
+  以及哪些是刻意不做的。
 - [时间线编辑目标规则](./timeline-edit-targets)：时间线命令作用于何处。
 - [片段文件](./fragment-files)：保存一组片段的本机格式，以及与 AviUtl 物件文件的关系。
 - [AviUtl 物件文件](./exo-object-files)：`.exo` 导入翻译了什么、保留了什么、有意跳过了什么。

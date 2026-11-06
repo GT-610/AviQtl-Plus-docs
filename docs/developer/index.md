@@ -34,6 +34,8 @@ not part of the release archives. Select the frontend with
 
 - [AviUtl operability targets](./operability-targets): the editing-model
   compatibility goals that guide development.
+- [AviUtl2 function parity](./aviutl2-function-parity): what was adopted from
+  AviUtl2, what was kept, and what is deliberately out of scope.
 - [Timeline edit target rules](./timeline-edit-targets): where timeline commands
   act.
 - [Fragment files](./fragment-files): the native format for saving a block of
