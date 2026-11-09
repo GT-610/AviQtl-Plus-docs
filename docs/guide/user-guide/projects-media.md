@@ -67,7 +67,7 @@ clips, or the whole scene when nothing is selected; **File → Insert Fragment�
 them back, and dropping the file on the timeline places it at the pointer.
 
 A fragment keeps everything the project keeps, including effects and parameters that
-have no AviUtl equivalent, so it is the way work moves between AviQtl-Plus projects.
+have no AviUtl equivalent, so it is the way work moves between Freya NLE projects.
 
 AviUtl object files (`.exo`) can be imported, but not written: **File → Import AviUtl
 Object File (Compatibility)…** brings AviUtl material in, and the report says what it
@@ -82,7 +82,7 @@ translated and what it had to keep as a disabled placeholder.
 
 ## Missing media
 
-A project can still open when referenced files are missing. AviQtl-Plus reports
+A project can still open when referenced files are missing. Freya NLE reports
 the missing items and provides a management dialog where each item can be
 replaced with a compatible file.
 

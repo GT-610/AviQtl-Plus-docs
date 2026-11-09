@@ -1,6 +1,6 @@
 ---
 title: Effects and objects
-description: Build native JSON and WGSL render packages for AviQtl-Plus.
+description: Build native JSON and WGSL render packages for Freya NLE.
 ---
 
 # Effects and objects
@@ -124,8 +124,8 @@ Colors returned by `aviqtl_effect` are straight-alpha RGBA values. The composito
 
 The repository contains two validated references:
 
-- [`color-effects`](https://github.com/GT-610/AviQtl-Plus/tree/main/effect-packages/color-effects) demonstrates a native Effect.
-- [`weather-objects`](https://github.com/GT-610/AviQtl-Plus/tree/main/effect-packages/weather-objects) demonstrates native rain and snow Objects.
+- [`color-effects`](https://github.com/GT-610/Freya-NLE/tree/main/effect-packages/color-effects) demonstrates a native Effect.
+- [`weather-objects`](https://github.com/GT-610/Freya-NLE/tree/main/effect-packages/weather-objects) demonstrates native rain and snow Objects.
 
 ## Test checklist
 

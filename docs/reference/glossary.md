@@ -1,6 +1,6 @@
 ---
 title: Glossary
-description: Common editing and AviQtl-Plus terms.
+description: Common editing and Freya NLE terms.
 ---
 
 ::: warning

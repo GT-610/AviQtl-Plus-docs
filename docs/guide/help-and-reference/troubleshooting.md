@@ -43,7 +43,7 @@ differ.
 - Close unnecessary applications and reduce competing GPU workloads.
 - Test whether one media file, effect, or audio plugin triggers the slowdown.
 - Reduce the number of simultaneously visible heavy effects while editing.
-- Save, restart AviQtl-Plus, and reopen the project before collecting a report.
+- Save, restart Freya NLE, and reopen the project before collecting a report.
 
 ## Export fails
 
@@ -54,6 +54,6 @@ differ.
 
 ## Report a reproducible issue
 
-Use the [AviQtl-Plus issue tracker](https://github.com/GT-610/AviQtl-Plus/issues).
+Use the [Freya NLE issue tracker](https://github.com/GT-610/Freya-NLE/issues).
 Include the smallest project or steps that reproduce the problem, but remove
 private media and personal paths before uploading files or logs.

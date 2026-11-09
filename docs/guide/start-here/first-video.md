@@ -1,11 +1,11 @@
 ---
 title: Make your first video
-description: Create, edit, save, preview, and export a small AviQtl-Plus project.
+description: Create, edit, save, preview, and export a small Freya NLE project.
 ---
 
 # Make your first video
 
-Time to make your first video with AviQtl-Plus. Not sure what to make? Download [this sample video](https://static.fsf.org/nosvn/videos/escape-to-freedom/videos/escape-to-freedom-1080p.mp4) and follow along.
+Time to make your first video with Freya NLE. Not sure what to make? Download [this sample video](https://static.fsf.org/nosvn/videos/escape-to-freedom/videos/escape-to-freedom-1080p.mp4) and follow along.
 
 ::: info
 The sample video comes from https://www.fsf.org/blogs/community/help-others-find-free-software-watch-and-share-escape-to-freedom and is licensed under [CC-BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
@@ -13,7 +13,7 @@ The sample video comes from https://www.fsf.org/blogs/community/help-others-find
 The tutorial below uses the sample video, but it works the same way with any other footage.
 :::
 
-Launch AviQtl-Plus.
+Launch Freya NLE.
 
 ## 1. Create a project
 
@@ -38,7 +38,7 @@ The concept of a layer is similar to the "tracks" found in most video editing so
 :::
 
 ::: warning
-In AviQtl-Plus, **higher-numbered layers render on top**: for example, layer 3 appears above layer 2. This matches AviQtl, but may be the opposite of some other video editors.
+In Freya NLE, **higher-numbered layers render on top**: for example, layer 3 appears above layer 2. This matches AviQtl, but may be the opposite of some other video editors.
 :::
 
 Import an image, video, or audio file, or drag it into the timeline. You can place your first visual clip at frame `0` on a visible layer, or anywhere else you like.
@@ -62,12 +62,12 @@ Scroll down to the "Text" section — these properties are unique to text object
 ![Rendered text in the preview](/images/guide/first-video/zh-CN/text-preview.png)
 
 ::: info
-You might wonder why video objects are blue and audio objects are red. In AviQtl-Plus, blue indicates *visual objects* — things you see, which all share the basic "standard drawing" logic, such as text, images, video, and shapes. Red indicates *audio objects* — things you hear, such as the audio attached to a video or a standalone audio file. Purple indicates *transition objects*, which are covered later.
+You might wonder why video objects are blue and audio objects are red. In Freya NLE, blue indicates *visual objects* — things you see, which all share the basic "standard drawing" logic, such as text, images, video, and shapes. Red indicates *audio objects* — things you hear, such as the audio attached to a video or a standalone audio file. Purple indicates *transition objects*, which are covered later.
 :::
 
 ## 4. Animate the text
 
-First, let's understand how motion works in AviQtl-Plus.
+First, let's understand how motion works in Freya NLE.
 
 ![The "standard drawing" panel](/images/guide/first-video/zh-CN/standard-draw.png)
 
@@ -75,7 +75,7 @@ Below every parameter there is a keyframe axis. The object has a keyframe at its
 
 ![The interpolation window](/images/guide/first-video/zh-CN/interpolation-type.png)
 
-In other words, you only need to define where the value starts within the active region (start keyframe), where it ends (end keyframe), and how it moves (interpolation type). AviQtl-Plus fills in everything in between.
+In other words, you only need to define where the value starts within the active region (start keyframe), where it ends (end keyframe), and how it moves (interpolation type). Freya NLE fills in everything in between.
 
 Let's add horizontal constant-velocity motion to the text. Double-click the axis below the X parameter at the position where you want the motion to start, creating a keyframe there. Then double-click again at the position where you want it to end, creating a second keyframe.
 
@@ -94,9 +94,9 @@ Click the keyframes at either end of the active region to jump to that time and 
 ![Setting the X start and end values](/images/guide/first-video/zh-CN/x-value-set.png)
 
 ::: info
-In AviQtl-Plus, the default coordinate origin `x=0, y=0, z=0` is the **center of the canvas**. Think of the preview as a **camera looking straight down** along the Z axis: X is positive to the right, Y is positive upward, and positive Z brings the object closer, making it appear larger.
+In Freya NLE, the default coordinate origin `x=0, y=0, z=0` is the **center of the canvas**. Think of the preview as a **camera looking straight down** along the Z axis: X is positive to the right, Y is positive upward, and positive Z brings the object closer, making it appear larger.
 
-This is a bit like Blender, isn't it? One of AviQtl-Plus's defining features is that its world is three-dimensional. You may not yet understand why a video editor needs a Z axis, but you will once you reach the "Camera control" chapter!
+This is a bit like Blender, isn't it? One of Freya NLE's defining features is that its world is three-dimensional. You may not yet understand why a video editor needs a Z axis, but you will once you reach the "Camera control" chapter!
 :::
 
 Click the parameter name `X`, choose "Linear" in the interpolation settings, then close the window.
@@ -125,7 +125,7 @@ Play it — isn't the shape vibrating? Just like any other property, you can adj
 
 ## 6. Preview and save
 
-The main preview shows every effect. Choose "File" → "Save" (or press `Ctrl` + `S`) to save the whole project. AviQtl-Plus also supports autosave, so you can recover your progress after an unexpected crash — but we still recommend saving manually on a regular basis, just in case.
+The main preview shows every effect. Choose "File" → "Save" (or press `Ctrl` + `S`) to save the whole project. Freya NLE also supports autosave, so you can recover your progress after an unexpected crash — but we still recommend saving manually on a regular basis, just in case.
 
 ## 7. Export
 
@@ -137,4 +137,4 @@ You can watch the live export progress in the main preview window. Once it's don
 
 ![The finished exported video](/images/guide/first-video/zh-CN/final-video.png)
 
-You have now learned the core AviQtl-Plus workflow.
+You have now learned the core Freya NLE workflow.

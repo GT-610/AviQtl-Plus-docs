@@ -1,22 +1,22 @@
 ---
 title: AviUtl operability targets
-description: The editing-model compatibility goals that guide AviQtl-Plus development.
+description: The editing-model compatibility goals that guide Freya NLE development.
 ---
 
 # AviUtl Operability Targets
 
-This document defines how AviQtl-Plus should feel to users who already know
+This document defines how Freya NLE should feel to users who already know
 AviUtl 1.10 with ExEdit 0.92, while still behaving like a modern video editor.
 It is a product and contribution guide, not a promise of binary compatibility.
 
-AviQtl-Plus does not load AviUtl or ExEdit plugins directly. The compatibility
+Freya NLE does not load AviUtl or ExEdit plugins directly. The compatibility
 target is the editing model: timeline habits, object settings, parameter
 editing, keyframe work, preview control, and project flow should be familiar
 enough that an experienced AviUtl user can become productive quickly.
 
 ## Product Principle
 
-AviQtl-Plus should keep the parts of AviUtl that made precise, object-based
+Freya NLE should keep the parts of AviUtl that made precise, object-based
 editing fast, and replace the parts that make modern production difficult.
 
 Familiarity wins when it protects muscle memory:
@@ -94,7 +94,7 @@ right-click creation as AviUtl-like operations.
 
 ### Objects, Effects, and Filters
 
-AviQtl-Plus should preserve the AviUtl habit of building a scene from objects
+Freya NLE should preserve the AviUtl habit of building a scene from objects
 and stacking effects or filters on them. The modern extension system uses JSON,
 WGSL, and packages internally, but users should experience it as a searchable
 object/effect catalog with consistent parameter editing.
@@ -111,7 +111,7 @@ object/effect catalog with consistent parameter editing.
 
 ### Parameter and Keyframe Editing
 
-AviUtl users expect numerical precision and fast animation control. AviQtl-Plus
+AviUtl users expect numerical precision and fast animation control. Freya NLE
 should keep that precision while adding clearer interpolation, validation, and
 preview feedback.
 
@@ -144,7 +144,7 @@ unresponsive.
 
 ### Import, Save, and Export
 
-AviQtl-Plus should make modern media workflows more reliable than classic
+Freya NLE should make modern media workflows more reliable than classic
 AviUtl, especially around Unicode paths, long projects, audio, and codecs.
 
 - Drag-and-drop import validates file URLs and rejects unsupported schemes
@@ -160,7 +160,7 @@ AviUtl, especially around Unicode paths, long projects, audio, and codecs.
 
 ### Shortcuts and Menus
 
-Keyboard habits are part of the AviUtl experience. AviQtl-Plus should keep common
+Keyboard habits are part of the AviUtl experience. Freya NLE should keep common
 editing commands fast while allowing modern shortcut customization.
 
 - Core commands have defaults for new, open, save, save as, export, undo, redo,

@@ -1,6 +1,6 @@
 ---
 title: 效果与对象
-description: 为 AviQtl-Plus 开发原生 JSON 与 WGSL 渲染包。
+description: 为 Freya NLE 开发原生 JSON 与 WGSL 渲染包。
 ---
 
 # 效果与对象
@@ -124,8 +124,8 @@ fn aviqtl_effect(
 
 仓库提供两个通过验证的参考包：
 
-- [`color-effects`](https://github.com/GT-610/AviQtl-Plus/tree/main/effect-packages/color-effects) 演示原生效果。
-- [`weather-objects`](https://github.com/GT-610/AviQtl-Plus/tree/main/effect-packages/weather-objects) 演示原生雨雪对象。
+- [`color-effects`](https://github.com/GT-610/Freya-NLE/tree/main/effect-packages/color-effects) 演示原生效果。
+- [`weather-objects`](https://github.com/GT-610/Freya-NLE/tree/main/effect-packages/weather-objects) 演示原生雨雪对象。
 
 ## 测试清单
 

@@ -23,7 +23,7 @@ effects when the output of one should become the input of another.
 ## Keyframes
 
 A keyframe stores a parameter value at a particular time inside a clip. With two
-or more keyframes, AviQtl-Plus calculates intermediate values according to the
+or more keyframes, Freya NLE calculates intermediate values according to the
 selected interpolation.
 
 1. Select a clip and parameter.

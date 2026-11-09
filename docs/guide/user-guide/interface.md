@@ -11,11 +11,11 @@ This page is not finished yet.
 
 # Interface overview
 
-AviQtl-Plus uses separate editing surfaces rather than a single fixed panel
+Freya NLE uses separate editing surfaces rather than a single fixed panel
 layout. The main preview, timeline, and object settings can be shown from the
 application menus and arranged to fit your screen.
 
-<!-- Add screenshot: ![AviQtl-Plus preview, timeline, and object settings windows](/images/en/guide/interface/workspace-overview.webp) -->
+<!-- Add screenshot: ![Freya NLE preview, timeline, and object settings windows](/images/en/guide/interface/workspace-overview.webp) -->
 
 A typical workspace keeps the preview visible while the timeline and selected-object settings remain accessible.
 

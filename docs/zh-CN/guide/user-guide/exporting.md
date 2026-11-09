@@ -1,6 +1,6 @@
 ---
 title: 导出
-description: 将 AviQtl-Plus 时间线生成视频或图像序列。
+description: 将 Freya NLE 时间线生成视频或图像序列。
 ---
 
 ::: warning
@@ -21,7 +21,7 @@ description: 将 AviQtl-Plus 时间线生成视频或图像序列。
 - 选择空间充足且可写入的输出目录。
 - 不要覆盖早期导出的唯一副本。
 
-<!-- 添加截图：![包含输出路径和帧范围的 AviQtl-Plus 导出对话框](/images/zh-CN/guide/exporting/export-dialog.webp) -->
+<!-- 添加截图：![包含输出路径和帧范围的 Freya NLE 导出对话框](/images/zh-CN/guide/exporting/export-dialog.webp) -->
 
 可用编码器取决于平台和已安装的多媒体组件。
 

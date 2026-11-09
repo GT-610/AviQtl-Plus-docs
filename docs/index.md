@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: AviQtl-Plus
+  name: Freya NLE
   text: Object-based video editor.
   tagline: Fast, free, open-source and cross-platform. Inspired by AviUtl.
   actions:
@@ -20,14 +20,14 @@ features:
   - title: Learn by making
     details: Follow a short project from installation and media import through timeline editing and export.
   - title: Standing on the shoulders of giants
-    details: You'll get mastered with AviQtl-Plus in a couple of hours if you are familiar with AviUtl, Vegas or After Effects.
+    details: You'll get mastered with Freya NLE in a couple of hours if you are familiar with AviUtl, Vegas or After Effects.
   - title: Open to extension
-    details: Build AviQtl-Plus, create GPU effects and objects, or automate workflows with LuaJIT plugins.
+    details: Build Freya NLE, create GPU effects and objects, or automate workflows with LuaJIT plugins.
 ---
 
 ## Documentation status
 
-This manual is being built alongside AviQtl-Plus. While AviQtl-Plus is still in early stage, pages may change when the
+This manual is being built alongside Freya NLE. While Freya NLE is still in early stage, pages may change when the
 application is still evolving.
 
 If a label in the application differs from the manual, please report or

@@ -1,6 +1,6 @@
 ---
 title: 插件开发
-description: 创建用于自动化 AviQtl-Plus 工作流的 LuaJIT 插件。
+description: 创建用于自动化 Freya NLE 工作流的 LuaJIT 插件。
 ---
 
 # 插件开发
@@ -24,7 +24,7 @@ return {
     name = "My Plugin",
     version = "0.1.0",
     author = "Example Author",
-    description = "A small AviQtl-Plus automation plugin",
+    description = "A small Freya NLE automation plugin",
     min_app_version = "0.2.0"
 }
 ```
@@ -41,4 +41,4 @@ return {
 - 正确处理错误，避免一个插件中断编辑会话。
 - 记录安装、权限和移除方法。
 
-主仓库在 [`plugins/`](https://github.com/GT-610/AviQtl-Plus/tree/main/plugins) 和 [`examples/`](https://github.com/GT-610/AviQtl-Plus/tree/main/examples) 中提供示例。脚本接口稳定后，本区域会加入完整 API 参考。
+主仓库在 [`plugins/`](https://github.com/GT-610/Freya-NLE/tree/main/plugins) 和 [`examples/`](https://github.com/GT-610/Freya-NLE/tree/main/examples) 中提供示例。脚本接口稳定后，本区域会加入完整 API 参考。

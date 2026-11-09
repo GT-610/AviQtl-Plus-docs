@@ -1,6 +1,6 @@
 ---
 title: Documentation contribution guide
-description: Write, translate, review, and add screenshots to the AviQtl-Plus manual.
+description: Write, translate, review, and add screenshots to the Freya NLE manual.
 ---
 
 # Documentation contribution guide

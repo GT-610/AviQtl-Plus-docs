@@ -1,6 +1,6 @@
 ---
 title: 术语表
-description: 常见视频编辑与 AviQtl-Plus 术语。
+description: 常见视频编辑与 Freya NLE 术语。
 ---
 
 ::: warning

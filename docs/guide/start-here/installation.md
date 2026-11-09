@@ -1,18 +1,18 @@
 ---
 title: Install
-description: Download and start AviQtl-Plus on Windows, Linux, or macOS.
+description: Download and start Freya NLE on Windows, Linux, or macOS.
 ---
 
-# Install AviQtl-Plus
+# Install Freya NLE
 
 ## Download a release
 
 Download a build for your platform from the
-[AviQtl-Plus releases page](https://github.com/GT-610/AviQtl-Plus/releases).
-Extract the archive to a folder you can write to, then start the AviQtl-Plus
+[Freya NLE releases page](https://github.com/GT-610/Freya-NLE/releases).
+Extract the archive to a folder you can write to, then start the Freya NLE
 executable.
 
-![AviQtl-Plus release assets on GitHub](/images/guide/installation/release-assets.png)
+![Freya NLE release assets on GitHub](/images/guide/installation/release-assets.png)
 
 Choose the archive that matches your operating system and architecture.
 

@@ -1,6 +1,6 @@
 ---
 title: Plugin development
-description: Create LuaJIT plugins that automate AviQtl-Plus workflows.
+description: Create LuaJIT plugins that automate Freya NLE workflows.
 ---
 
 # Plugin development
@@ -27,7 +27,7 @@ return {
     name = "My Plugin",
     version = "0.1.0",
     author = "Example Author",
-    description = "A small AviQtl-Plus automation plugin",
+    description = "A small Freya NLE automation plugin",
     min_app_version = "0.2.0"
 }
 ```
@@ -47,6 +47,6 @@ network access visible to users.
 - Document installation, permissions, and removal.
 
 The main repository contains example plugins under
-[`plugins/`](https://github.com/GT-610/AviQtl-Plus/tree/main/plugins) and
-[`examples/`](https://github.com/GT-610/AviQtl-Plus/tree/main/examples). A full
+[`plugins/`](https://github.com/GT-610/Freya-NLE/tree/main/plugins) and
+[`examples/`](https://github.com/GT-610/Freya-NLE/tree/main/examples). A full
 API reference will be added here as the scripting surface stabilizes.

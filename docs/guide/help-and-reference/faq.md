@@ -1,13 +1,13 @@
 ---
 title: Frequently asked questions
-description: Common questions about AviQtl-Plus, its goals, and its relationship with AviUtl and NeoUtl.
+description: Common questions about Freya NLE, its goals, and its relationship with AviUtl and NeoUtl.
 ---
 
 # Frequently asked questions
 
 > [!NOTE]
 > The following answers reflect the original author's (taisho-guy) personal
-> views and development history. AviQtl-Plus-specific answers reflect the
+> views and development history. Freya NLE-specific answers reflect the
 > maintainer's ([GT610](https://github.com/GT-610)) perspective.
 
 ## What motivated the development?
@@ -34,10 +34,10 @@ problem.
 
 ## Why develop an AviUtl clone?
 
-AviQtl-Plus is not a "reinvention of AviUtl". While it is strongly inspired by
+Freya NLE is not a "reinvention of AviUtl". While it is strongly inspired by
 AviUtl, its internals are entirely different.
 
-| Item | AviQtl-Plus | ExEdit0 | ExEdit2 |
+| Item | Freya NLE | ExEdit0 | ExEdit2 |
 | :--- | :--- | :--- | :--- |
 | Core technology | Rust + Slint (Qt6 legacy) | Win32 API | Win32 API |
 | Parallelism model | Data-driven (ECS) | Single-threaded | Multi-threaded |
@@ -47,7 +47,7 @@ AviUtl, its internals are entirely different.
 | Plugin system | LuaJIT / C++ / QML / GLSL | Lua / C++ | LuaJIT / C++ |
 | Supported OS | Linux, Windows, macOS | Windows | Windows |
 
-AviQtl-Plus fundamentally resolves structural weaknesses:
+Freya NLE fundamentally resolves structural weaknesses:
 
 1. **Data-oriented design with ECS (Entity Component System):** Maximizes CPU
    cache efficiency, accelerating processing of large numbers of objects.
@@ -72,7 +72,7 @@ light blue.
 No. The mechanisms differ, so there is no compatibility. There are no plans to
 implement a compatibility layer either.
 
-## Why continue AviQtl-Plus development?
+## Why continue Freya NLE development?
 
 The original project was suspended due to genuine technical difficulties with Qt
 Quick — but it also proved that **Qt + FFmpeg can rapidly produce a high-quality
@@ -85,10 +85,10 @@ firsthand and picked up where the original author left off — not just to keep
 the code alive, but to see the original vision through: a video editor that
 inherits AviUtl's operability while surpassing its performance.
 
-## How is AviQtl-Plus different from the original project?
+## How is Freya NLE different from the original project?
 
 The technical direction remains largely the same (Qt Quick + QRhi + ECS), but
-AviQtl-Plus places greater emphasis on:
+Freya NLE places greater emphasis on:
 
 - **Incremental deliverability:** getting a basic but usable editing workflow
   out the door, rather than pursuing architectural perfection upfront.

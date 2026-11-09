@@ -1,11 +1,11 @@
 ---
 title: Timeline edit target rules
-description: Where timeline commands act in AviQtl-Plus.
+description: Where timeline commands act in Freya NLE.
 ---
 
 # Timeline Edit Target Rules
 
-This document defines where timeline commands act. AviQtl-Plus has to feel
+This document defines where timeline commands act. Freya NLE has to feel
 familiar to AviUtl-style object editing while also supporting modern NLE and
 After Effects-style workflows. The main rule is that selection answers "what is
 edited", while edit targets answer "where the edit happens".

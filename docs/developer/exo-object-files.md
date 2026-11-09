@@ -1,19 +1,19 @@
 ---
 title: AviUtl object files (.exo)
-description: How AviQtl-Plus reads AviUtl ExEdit object files, and exactly what it translates.
+description: How Freya NLE reads AviUtl ExEdit object files, and exactly what it translates.
 ---
 
 # AviUtl object files (`.exo`)
 
 AviUtl ExEdit can save a selection of objects as an **object file** with the `.exo`
 extension: a small text document that carries object positions, layer numbers, the
-filter stack of each object, and every parameter value. AviQtl-Plus **reads** that format,
+filter stack of each object, and every parameter value. Freya NLE **reads** that format,
 so existing AviUtl material can be brought into a project.
 
 This is the **compatibility** path, and it runs one way. ExEdit's object model is narrower
 than this project's, so an import translates what it can prove and turns anything else into a
 disabled placeholder rather than guessing. Writing an object file back out would have to drop
-whatever AviQtl-Plus can express and ExEdit cannot, so AviQtl-Plus does not write one: use a
+whatever Freya NLE can express and ExEdit cannot, so Freya NLE does not write one: use a
 [fragment](./fragment-files) to move work between projects.
 
 - **File → Import AviUtl Object File (Compatibility)…** appends the file's objects after the current
@@ -25,7 +25,7 @@ whatever AviQtl-Plus can express and ExEdit cannot, so AviQtl-Plus does not writ
   scene, which is what AviUtl's "new project from object file" does.
 
 These commands work on the object file only. They do not execute ExEdit scripts, and they
-do not make AviQtl-Plus load AviUtl plugins.
+do not make Freya NLE load AviUtl plugins.
 
 ## What the format contains
 
@@ -54,7 +54,7 @@ X=100.0
 
 Keys are not quoted and a value may itself contain `=`, so a line splits on its first
 `=`. Frames and layers are 1-based on disk, which is why an object at `start=11` begins at
-frame 10 in AviQtl-Plus. A trackbar that animates is stored as
+frame 10 in Freya NLE. A trackbar that animates is stored as
 `start,end,motion,parameter`, for example `X=100.0,300.0,15@easing_普通@uf_easing,16`.
 
 ## Text encoding
@@ -66,7 +66,7 @@ so a file from either pack reads correctly without asking the user which one it 
 
 ## What is translated
 
-| ExEdit object or filter | AviQtl-Plus result |
+| ExEdit object or filter | Freya NLE result |
 | --- | --- |
 | 文本 / テキスト | Text object: text, font, size, colour, outline colour, bold, italic, letter and line spacing, alignment |
 | 图像 / 画像, 视频 / 動画, 音频 / 音声 | Image, video, or audio object, with the referenced path taken from the object's binary data |
@@ -105,7 +105,7 @@ parameter semantics are known, so a new entry needs evidence for each.
    and that nothing preserved was dropped, so a filter that stops translating shows up here
    rather than in someone's project.
 
-Objects created in AviQtl-Plus use the first alias when no source spelling exists, so put the
+Objects created in Freya NLE use the first alias when no source spelling exists, so put the
 name the pack writes first.
 
 ## What is preserved but not rendered
@@ -124,7 +124,7 @@ A placeholder is inspectable: selecting it shows read-only rows for everything t
 kept, including the script identifier and each preserved key. The rows are marked unsupported
 rather than editable, because the effect does not run yet.
 
-When an import leaves placeholders behind, AviQtl-Plus shows a report naming each object or
+When an import leaves placeholders behind, Freya NLE shows a report naming each object or
 filter it preserved. For a script-backed effect the note names the script, because that is the
 file the user would have to install for the object to work. A clean import stays silent, so the dialog only appears when the picture
 may differ from AviUtl.
@@ -135,7 +135,7 @@ disabled entry in the stack.
 
 Each object also carries routing flags: `group` binds it to a group control, `clipping` clips
 it to the object above, `audio` marks it as an audio object, and `chain` and `camera` change
-what it applies to. AviQtl-Plus has no field for them, so they are stored on the clip in its
+what it applies to. Freya NLE has no field for them, so they are stored on the clip in its
 extra fields rather than being dropped.
 
 ExEdit also appends bookkeeping filters of its own — 上层物件缓存 (an upper-object buffer) and

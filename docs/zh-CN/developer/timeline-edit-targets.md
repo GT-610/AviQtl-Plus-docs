@@ -1,11 +1,11 @@
 ---
 title: 时间线编辑目标规则
-description: AviQtl-Plus 中时间线命令作用于何处。
+description: Freya NLE 中时间线命令作用于何处。
 ---
 
 # 时间线编辑目标规则
 
-本文档定义时间线命令作用于何处。AviQtl-Plus 需要让 AviUtl 式对象编辑感到熟悉，同时支持现代 NLE 和 After Effects 式工作流。核心规则是：选择回答"编辑什么"，而编辑目标回答"编辑发生在哪里"。
+本文档定义时间线命令作用于何处。Freya NLE 需要让 AviUtl 式对象编辑感到熟悉，同时支持现代 NLE 和 After Effects 式工作流。核心规则是：选择回答"编辑什么"，而编辑目标回答"编辑发生在哪里"。
 
 ## 目标类型
 

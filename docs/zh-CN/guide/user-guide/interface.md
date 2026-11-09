@@ -11,9 +11,9 @@ description: 了解预览、时间线、设置、菜单与播放控制。
 
 # 界面概览
 
-AviQtl-Plus 使用多个编辑窗口，而不是固定在单个面板布局中。主预览、时间线和对象设置都可以通过应用菜单显示，并按照屏幕空间自由摆放。
+Freya NLE 使用多个编辑窗口，而不是固定在单个面板布局中。主预览、时间线和对象设置都可以通过应用菜单显示，并按照屏幕空间自由摆放。
 
-<!-- 添加截图：![AviQtl-Plus 的预览、时间线和对象设置窗口](/images/zh-CN/guide/interface/workspace-overview.webp) -->
+<!-- 添加截图：![Freya NLE 的预览、时间线和对象设置窗口](/images/zh-CN/guide/interface/workspace-overview.webp) -->
 
 典型工作区会同时保留预览、时间线和选中对象的设置。
 

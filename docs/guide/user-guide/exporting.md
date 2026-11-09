@@ -1,6 +1,6 @@
 ---
 title: Exporting
-description: Turn an AviQtl-Plus timeline into a video or image sequence.
+description: Turn an Freya NLE timeline into a video or image sequence.
 ---
 
 ::: warning
@@ -22,7 +22,7 @@ preview the intended frame range before opening **Export Media**.
 - Choose an output folder with enough free space.
 - Avoid overwriting the only copy of an earlier export.
 
-<!-- Add screenshot: ![AviQtl-Plus export dialog with output path and frame range](/images/en/guide/exporting/export-dialog.webp) -->
+<!-- Add screenshot: ![Freya NLE export dialog with output path and frame range](/images/en/guide/exporting/export-dialog.webp) -->
 
 The exact encoder choices depend on the platform and available multimedia components.
 

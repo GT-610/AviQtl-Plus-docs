@@ -38,7 +38,7 @@ description: 排查启动、媒体、预览、性能、插件与导出问题。
 - 关闭不必要的应用，减少竞争 GPU 的工作负载。
 - 判断是否由某个媒体、效果或音频插件触发。
 - 编辑期间减少同时可见的重型效果。
-- 保存、重启 AviQtl-Plus 并重新打开项目，再收集问题报告。
+- 保存、重启 Freya NLE 并重新打开项目，再收集问题报告。
 
 ## 导出失败
 
@@ -49,4 +49,4 @@ description: 排查启动、媒体、预览、性能、插件与导出问题。
 
 ## 报告可复现问题
 
-使用 [AviQtl-Plus Issues](https://github.com/GT-610/AviQtl-Plus/issues)。提供能够复现问题的最小项目或步骤；上传文件或日志前删除私人媒体与个人路径。
+使用 [Freya NLE Issues](https://github.com/GT-610/Freya-NLE/issues)。提供能够复现问题的最小项目或步骤；上传文件或日志前删除私人媒体与个人路径。

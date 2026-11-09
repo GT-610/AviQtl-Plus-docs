@@ -1,6 +1,6 @@
 ---
 title: 文档贡献指南
-description: 编写、翻译、审阅 AviQtl-Plus 手册并补充截图。
+description: 编写、翻译、审阅 Freya NLE 手册并补充截图。
 ---
 
 # 文档贡献指南

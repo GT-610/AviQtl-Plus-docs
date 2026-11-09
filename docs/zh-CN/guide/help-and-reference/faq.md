@@ -1,12 +1,12 @@
 ---
 title: 常见问题
-description: 关于 AviQtl-Plus、其目标以及与 AviUtl 和 NeoUtl 关系的常见问题。
+description: 关于 Freya NLE、其目标以及与 AviUtl 和 NeoUtl 关系的常见问题。
 ---
 
 # 常见问题
 
 > [!NOTE]
-> 以下回答反映的是原作者（taisho-guy）的个人观点与开发经历。AviQtl-Plus 相关回答反映的是维护者（[GT610](https://github.com/GT-610)）的观点。
+> 以下回答反映的是原作者（taisho-guy）的个人观点与开发经历。Freya NLE 相关回答反映的是维护者（[GT610](https://github.com/GT-610)）的观点。
 
 ## 开发的契机是什么？
 
@@ -24,9 +24,9 @@ description: 关于 AviQtl-Plus、其目标以及与 AviUtl 和 NeoUtl 关系的
 
 ## 为什么要开发 AviUtl 的克隆？
 
-AviQtl-Plus 并非"重新发明 AviUtl"。虽然深受 AviUtl 影响，但内部实现完全不同。
+Freya NLE 并非"重新发明 AviUtl"。虽然深受 AviUtl 影响，但内部实现完全不同。
 
-| 项目 | AviQtl-Plus | ExEdit0 | ExEdit2 |
+| 项目 | Freya NLE | ExEdit0 | ExEdit2 |
 | :--- | :--- | :--- | :--- |
 | 核心技术 | Rust + Slint（Qt6 旧版） | Win32 API | Win32 API |
 | 并行处理模型 | 数据驱动（ECS） | 单线程 | 多线程 |
@@ -36,7 +36,7 @@ AviQtl-Plus 并非"重新发明 AviUtl"。虽然深受 AviUtl 影响，但内部
 | 插件系统 | LuaJIT / C++ / QML / GLSL | Lua / C++ | LuaJIT / C++ |
 | 支持的操作系统 | Linux、Windows、macOS | Windows | Windows |
 
-AviQtl-Plus 从根本上解决结构性弱点：
+Freya NLE 从根本上解决结构性弱点：
 
 1. **基于 ECS（实体组件系统）的数据导向设计：** 极大提升 CPU 缓存效率，加速大量对象的处理。
 2. **现代化内存管理：** 采用 C++23 智能指针，从结构上最小化原因不明的崩溃。
@@ -55,15 +55,15 @@ AviUtl 标志的组合设计。
 
 不可以。由于机制不同，不兼容。也没有计划实现兼容层。
 
-## 为什么要继续开发 AviQtl-Plus？
+## 为什么要继续开发 Freya NLE？
 
 原项目因 Qt Quick 的技术难题而暂停，但同时也证明了 **Qt + FFmpeg 可以快速实现高质量的视频编辑器原型**。项目架构设计优秀，基础扎实。尤其现在 QRhi 提供了可行的 Compute Shader 路径，Qt Quick 路线仍然值得继续探索。
 
 作为早期的核心贡献者，维护者亲眼目睹了这个项目的潜力，并接过了原作者留下的开发位置——不仅是为了让项目继续存活，更是为了实现最初的愿景：打造一款继承 AviUtl 操作体验并超越其性能的视频编辑软件。
 
-## AviQtl-Plus 与原项目有什么不同？
+## Freya NLE 与原项目有什么不同？
 
-技术方向大致相同（Qt Quick + QRhi + ECS），但 AviQtl-Plus 更注重：
+技术方向大致相同（Qt Quick + QRhi + ECS），但 Freya NLE 更注重：
 
 - **渐进式交付：** 先让基本编辑功能可用，而非一开始就追求架构完美。
 - **务实解决问题：** 在 Qt Quick 的约束范围内寻找最优解，而非将其视为障碍。

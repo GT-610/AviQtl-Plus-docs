@@ -1,6 +1,6 @@
 ---
 title: Fragment files (.aviqtlfrag)
-description: How AviQtl-Plus saves a block of clips as a fragment, and how that differs from an AviUtl object file.
+description: How Freya NLE saves a block of clips as a fragment, and how that differs from an AviUtl object file.
 ---
 
 # Fragment files (`.aviqtlfrag`)
@@ -10,8 +10,8 @@ scene's worth of layered objects. It is what a user reaches for when work has to
 project it was made in.
 
 AviUtl solves the same problem with the [object file](./exo-object-files) (`.exo`), and
-AviQtl-Plus reads those. It does not write them: an object file would have to translate every
-clip into ExEdit's vocabulary, which is smaller than this project's, so whatever AviQtl-Plus can
+Freya NLE reads those. It does not write them: an object file would have to translate every
+clip into ExEdit's vocabulary, which is smaller than this project's, so whatever Freya NLE can
 express and ExEdit cannot would have to be dropped — or, worse, guessed at, producing a file
 that looks complete and renders differently.
 
@@ -30,9 +30,9 @@ nothing is lost.
 | | Fragment (`.aviqtlfrag`) | AviUtl object file (`.exo`) |
 | --- | --- | --- |
 | Reading | Lossless | Translated; anything unknown becomes a disabled placeholder |
-| Writing | Lossless, every clip | Not supported — AviQtl-Plus does not write one |
+| Writing | Lossless, every clip | Not supported — Freya NLE does not write one |
 | Reads AviUtl material | No | Yes |
-| Keeps AviQtl-Plus-only parameters | Yes | No |
+| Keeps Freya NLE-only parameters | Yes | No |
 
 A fragment is the only way work leaves a project, in either direction. An object file is the
 way material comes in from AviUtl, and it stays that way: a one-way door, so nothing this

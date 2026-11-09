@@ -12,7 +12,7 @@ This page is not finished yet.
 # Timeline editing
 
 The timeline is where you decide **when** an item appears and **which layer** it
-occupies. AviQtl-Plus combines AviUtl-style layered objects with common modern
+occupies. Freya NLE combines AviUtl-style layered objects with common modern
 editing commands.
 
 ## Selection and edit targets
@@ -32,7 +32,7 @@ playhead frame.
 - **Copy, cut, paste, duplicate:** reuse clips and their settings.
 - **Nudge:** move selected clips by one frame for precise alignment.
 
-<!-- Add screenshot: ![Several clips arranged across multiple AviQtl-Plus timeline layers](/images/en/guide/timeline/core-operations.webp) -->
+<!-- Add screenshot: ![Several clips arranged across multiple Freya NLE timeline layers](/images/en/guide/timeline/core-operations.webp) -->
 
 Horizontal placement controls timing; higher layers can composite over lower layers.
 
