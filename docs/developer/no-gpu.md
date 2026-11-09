@@ -33,7 +33,7 @@ real text rendering, which is what one would expect to fail first.
 
 ## What does not work
 
-`aviqtl-slint` cannot complete startup on such a host. Two blockers appear in order:
+`freya-nle` cannot complete startup on such a host. Two blockers appear in order:
 
 1. `slint::BackendSelector::require_wgpu_29(...)` refuses to select any backend, because
    `any_wgpu29_adapters_with_gpu` only accepts an adapter whose `device_type != Cpu` unless
@@ -69,7 +69,7 @@ $env:FFMPEG_DIR        = "<repo>\.build_tmp\msvc\Release\vcpkg_installed\x64-win
 $env:PKG_CONFIG        = "$env:FFMPEG_DIR\tools\pkgconf\pkgconf.exe"
 $env:PKG_CONFIG_PATH   = "$env:FFMPEG_DIR\lib\pkgconfig"
 $env:LIBCLANG_PATH     = "D:\Software\vcpkg\downloads\tools\clang\clang-21.1.8\bin"
-cargo build -p aviqtl-slint
+cargo build -p freya-nle
 ```
 
 **FFmpeg runtime DLLs.** The executable links `avutil-61`, `avcodec-63`, `avformat-63`,
@@ -85,8 +85,8 @@ Copy-Item "$env:FFMPEG_DIR\debug\bin\*.dll" rust\target\debug\ -Force
 ## Running
 
 ```powershell
-rust\target\debug\aviqtl-slint.exe              # requires a GPU-backed adapter
-rust\target\debug\aviqtl-slint.exe --validate-gpu   # render self-check, then exit
+rust\target\debug\freya-nle.exe              # requires a GPU-backed adapter
+rust\target\debug\freya-nle.exe --validate-gpu   # render self-check, then exit
 ```
 
 There is no software-rendering escape hatch in the application. One was prototyped and

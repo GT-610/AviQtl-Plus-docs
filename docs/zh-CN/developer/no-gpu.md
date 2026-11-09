@@ -33,7 +33,7 @@ description: 无 GPU 的 Windows 主机能构建和运行什么、不能运行�
 
 ## 不能正常工作的部分
 
-`aviqtl-slint` 无法在这类主机上完成启动。按出现顺序有两个阻塞点：
+`freya-nle` 无法在这类主机上完成启动。按出现顺序有两个阻塞点：
 
 1. `slint::BackendSelector::require_wgpu_29(...)` 拒绝选择任何后端，因为除非设置了
    `SLINT_WGPU_CPU`，`any_wgpu29_adapters_with_gpu` 只接受 `device_type != Cpu` 的适配器
@@ -64,7 +64,7 @@ $env:FFMPEG_DIR        = "<repo>\.build_tmp\msvc\Release\vcpkg_installed\x64-win
 $env:PKG_CONFIG        = "$env:FFMPEG_DIR\tools\pkgconf\pkgconf.exe"
 $env:PKG_CONFIG_PATH   = "$env:FFMPEG_DIR\lib\pkgconfig"
 $env:LIBCLANG_PATH     = "D:\Software\vcpkg\downloads\tools\clang\clang-21.1.8\bin"
-cargo build -p aviqtl-slint
+cargo build -p freya-nle
 ```
 
 **FFmpeg 运行时 DLL。** 可执行文件链接了 `avutil-61`、`avcodec-63`、`avformat-63`、
@@ -80,8 +80,8 @@ Copy-Item "$env:FFMPEG_DIR\debug\bin\*.dll" rust\target\debug\ -Force
 ## 运行
 
 ```powershell
-rust\target\debug\aviqtl-slint.exe              # 需要 GPU 后端适配器
-rust\target\debug\aviqtl-slint.exe --validate-gpu   # 渲染自检，然后退出
+rust\target\debug\freya-nle.exe              # 需要 GPU 后端适配器
+rust\target\debug\freya-nle.exe --validate-gpu   # 渲染自检，然后退出
 ```
 
 应用中并没有软件渲染的逃生开关。曾经做过一个原型，后来移除了：它只能清除阻塞点 1，
