@@ -1,23 +1,21 @@
 ---
 title: Developer documentation
-description: Build, understand, extend, and contribute to AviQtl-Plus.
+description: Build, understand, extend, and contribute to Freya NLE.
 ---
 
 # Developer documentation
 
-AviQtl-Plus pairs a shared Rust workspace (timeline, effects, audio,
-rendering, media) with two frontends: the default, shipped **Rust + Slint + wgpu** UI
-and the legacy **C++23 / Qt 6 + Qt Quick** UI with QRhi rendering,
-ECS-oriented timeline data, FFmpeg media processing, LuaJIT plugins, and
-QML/GLSL effect packages. The Qt frontend is kept as a behavior reference and is
-not part of the release archives. Select the frontend with
-`BUILD.py --frontend {slint,qt}` (default: `slint`).
+Freya NLE is a shared Rust workspace (timeline, effects, audio,
+rendering, media) behind the **Rust + Slint + wgpu** UI, the only frontend since
+the Qt Quick frontend was retired in 0.8. The workspace provides ECS-oriented
+timeline data, FFmpeg media processing, LuaJIT plugins, native effect packages,
+and wgpu rendering.
 
 ## Start contributing
 
 1. Read [Build from source](./building).
 2. Review the main repository's
-   [contribution guide](https://github.com/GT-610/AviQtl-Plus/blob/main/CONTRIBUTING.md).
+   [contribution guide](https://github.com/GT-610/Freya-NLE/blob/main/CONTRIBUTING.md).
 3. Run the relevant automated tests before and after a change.
 4. Update user documentation when behavior or interface labels change.
 
@@ -27,7 +25,7 @@ not part of the release archives. Select the frontend with
   `aviqtl-wgsl-v1` render contract.
 - [Plugin development](./plugins): Lua automation, lifecycle hooks, permissions,
   and package distribution.
-- Native application development: C++, Qt Quick, timeline services, media
+- Native application development: Rust, Slint, wgpu, timeline services, media
   decoding, rendering, audio, and tests in the main repository.
 
 ## Product targets and workflows

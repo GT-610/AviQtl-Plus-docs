@@ -1,6 +1,6 @@
 ---
 title: Build from source
-description: Configure and build AviQtl-Plus on Linux, macOS, or Windows.
+description: Configure and build Freya NLE on Linux, macOS, or Windows.
 ---
 
 # Build from source
@@ -9,8 +9,8 @@ Clone the application repository, including the documentation submodule only if
 you want a local copy of this site:
 
 ```bash
-git clone --recurse-submodules https://github.com/GT-610/AviQtl-Plus.git
-cd AviQtl-Plus
+git clone --recurse-submodules https://github.com/GT-610/Freya-NLE.git
+cd Freya-NLE
 ```
 
 For a source-only checkout, omit `--recurse-submodules`.
@@ -24,27 +24,9 @@ project, and builds it. The normal entry point is:
 python3 BUILD.py
 ```
 
-### Frontend selection
-
-`BUILD.py` builds the **Rust + Slint frontend by default** (under
-construction). While the migration is in progress, the legacy C++/QML (Qt)
-frontend remains available:
-
-```bash
-# Legacy Qt frontend (debug example)
-python3 BUILD.py --xcode --frontend qt --debug
-
-# Qt with an explicit Qt6 install prefix
-python3 BUILD.py --xcode --frontend qt --qt-dir <Qt6 prefix>
-```
-
-Qt builds run CMake (Ninja) into `.build_tmp/<target>/<Config>/qt-build`,
-then stage the raw Qt product — the `AviQtl.app` bundle on macOS, otherwise
-the `AviQtl` binary — plus the shared resources into `build/`, with a `-Qt`
-suffix on the archive name. These are development builds: platform deployment
-(`macdeployqt`/`windeployqt`) is intentionally skipped, so run the matching
-deployment tool before distributing a Qt build. `--qt-dir` is only honored
-for Qt builds; without it, `qmake6`/`qmake` on `PATH` is used for detection.
+This builds the **Rust + Slint frontend**, the only frontend since the Qt Quick
+frontend was retired in 0.8. There is no `--frontend` flag, no `--qt-dir`, and no
+CMake build to configure.
 
 Common platform-specific modes include:
 
@@ -65,8 +47,7 @@ python3 BUILD.py --msys2
 MSVC builds require Visual Studio 2022 (17.x) or newer. Visual Studio 2019
 and earlier are not supported. `BUILD.py` selects a supported Visual Studio
 installation through `vswhere` and rejects older toolsets. The build also
-requires a matching Qt MSVC installation when using the legacy Qt frontend,
-and vcpkg. See `python3 BUILD.py --help` for the current options.
+requires vcpkg. See `python3 BUILD.py --help` for the current options.
 
 ## Platform notes
 
@@ -82,23 +63,22 @@ by default.
 2. **Build**
    - `python3 BUILD.py --arch`
 3. **Run**
-   - `./build/AviQtl`
+   - `./build/Freya NLE`
 
-The container also installs Qt 6, LuaJIT, a Vulkan implementation (for example
+The container also installs LuaJIT, a Vulkan implementation (for example
 Mesa), FFmpeg, Carla, and clang (which provides libc++).
 
 ### macOS
 
-On macOS, `BUILD.py` checks and installs dependencies via Homebrew (CMake,
-Ninja, Qt6, etc.), then runs `macdeployqt` and `codesign` to create a `.app`
-bundle.
+On macOS, `BUILD.py` checks and installs dependencies via Homebrew (pkgconf,
+FFmpeg, etc.), then produces and codesigns a `.app` bundle.
 
 1. **Install dependencies**
    - `brew install python git`
 2. **Build**
    - `python3 BUILD.py --xcode`
 3. **Run**
-   - `open ./build/AviQtl.app`
+   - `open "./build/Freya NLE.app"`
 
 ### Windows (MSVC, default)
 
@@ -115,7 +95,7 @@ for environments that provide the matching GNU Rust target and dependencies.
    - `python3 BUILD.py`
    - To select MSYS2 explicitly, use `python3 BUILD.py --msys2` from an MSYS2 UCRT64 shell.
 3. **Run**
-   - `.\build\AviQtl.exe`
+   - `.\build\Freya NLE.exe`
 
 ### Windows (MSYS2, explicit alternative)
 
@@ -124,22 +104,28 @@ for environments that provide the matching GNU Rust target and dependencies.
 2. **Build**
    - `python3 BUILD.py --msys2`
 3. **Run**
-   - `./build/AviQtl.exe`
+   - `./build/Freya NLE.exe`
 
-## Qt version compatibility
+## Toolchain
 
-The project currently uses Qt private modules for ZIP handling, QRhi
-integration, and shader tooling. Build-time and runtime Qt patch versions must
-match. Rebuild after upgrading Qt packages.
+The Rust version is pinned in `rust-toolchain.toml`, and CI uses
+`dtolnay/rust-toolchain@1.97.1`. Make sure the pinned toolchain is the one on
+`PATH`: a newer `cargo` from a system package manager takes precedence over the
+`rustup` shim and can turn deprecation lints into build failures. Check
+`cargo --version` before trusting a result.
 
 ## Tests and quality checks
 
-Run tests from the configured build directory:
+Run the checks from the repository root:
 
 ```bash
-ctest --test-dir build --output-on-failure
+cargo fmt --manifest-path rust/Cargo.toml --all -- --check
+cargo clippy --manifest-path rust/Cargo.toml --locked --workspace --all-targets --all-features -- -D warnings
+cargo test --manifest-path rust/Cargo.toml --locked --workspace --all-features
+python -m unittest tests.test_build_version
 ```
 
-The repository also provides `check.py` for formatting, static analysis, and
-other quality checks. Treat a skipped tool as missing coverage rather than a
-successful check.
+Tests that need a GPU adapter, the FFmpeg CLI, or installed Carla libraries are
+`#[ignore]`d by default; see
+[Adding Tests](https://github.com/GT-610/Freya-NLE/blob/main/CONTRIBUTING.md#adding-tests).
+Treat a skipped tool as missing coverage rather than a successful check.

@@ -1,45 +1,48 @@
 ---
 title: Release checklist
-description: Requirements for creating an AviQtl-Plus release.
+description: Requirements for creating a Freya NLE release.
 ---
 
 # Release Checklist
 
-Use this checklist before creating an AviQtl-Plus tag. A release is valid only
-when the tagged commit passes the checks below from a clean build. A skipped
-check or a build left over from an earlier commit is not evidence.
+Use this checklist before creating a Freya NLE tag. A release is valid only when
+the tagged commit passes the checks below from a clean build. A skipped check or
+a build left over from an earlier commit is not evidence.
 
 ## Version
 
 - `[workspace.package] version` in `rust/Cargo.toml` is the single source of the
   project version. `BUILD.py` reads it, and the release workflow rejects a tag
   that is not exactly `v<version>`.
-- A pre-release uses the dotted counter form: version `0.7.0-rc.1`, tag
-  `v0.7.0-rc.1`. Do not use `-rc1` or `-rc-1`; see
-  [Versions and releases](https://github.com/GT-610/AviQtl-Plus/blob/main/CONTRIBUTING.md#versions-and-releases).
-- `project(AviQtl VERSION ...)` in `CMakeLists.txt` carries the numeric core of
-  the same version (`0.7.0` for `0.7.0-rc.1`), because CMake cannot express a
-  suffix. The macOS bundle metadata is written from that core.
+- A pre-release uses the dotted counter form: version `0.8.0-rc.1`, tag
+  `v0.8.0-rc.1`. Do not use `-rc1` or `-rc-1`; see
+  [Versions and releases](https://github.com/GT-610/Freya-NLE/blob/main/CONTRIBUTING.md#versions-and-releases).
+- The macOS bundle metadata carries the numeric core of the same version
+  (`0.8.0` for `0.8.0-rc.1`), because the bundle format cannot express a suffix.
+  `BUILD.py` derives it from the workspace version, so there is no second place
+  to edit.
 - `CHANGELOG.md` has a `## [<version>] - <YYYY-MM-DD>` section for the version
   being tagged, and `Unreleased` is empty.
 - `python -m unittest tests.test_build_version` passes; it fails when the version,
-  the tag form, `CMakeLists.txt`, and the changelog disagree.
+  the tag form, and the changelog disagree.
 - Confirm the About dialog of the packaged build reports the workspace version.
 
 ## Rust frontend
 
-The default and shipped frontend is Rust + Slint + wgpu. Run from a clean
-`rust/target`:
+Rust + Slint + wgpu is the only frontend. Run from a clean `rust/target`:
 
 ```text
 cargo fmt --manifest-path rust/Cargo.toml --all -- --check
 cargo clippy --manifest-path rust/Cargo.toml --locked --workspace --all-targets --all-features -- -D warnings
 cargo test --manifest-path rust/Cargo.toml --locked --workspace --all-features
-cargo test --manifest-path rust/Cargo.toml --locked -p aviqtl-media -p aviqtl-audio -- --ignored
+cargo test --manifest-path rust/Cargo.toml --locked -p freya-nle-media -p freya-nle-audio -- --ignored
 python -m unittest tests.test_build_version
-python tests/test_rust_abi_contract.py
-python tests/check_rust_abi.py --rust-src rust/aviqtl-core/src --header core/include/rust_core_abi.hpp
 ```
+
+The pinned toolchain in `rust-toolchain.toml` must be the one on `PATH`. A
+newer `cargo` installed by a system package manager takes precedence over the
+`rustup` shim and turns deprecation lints in the pinned release into failures, so
+check `cargo --version` before trusting a red or green result.
 
 Required platforms:
 
@@ -54,24 +57,16 @@ The `--ignored` tests need a GPU adapter, the FFmpeg CLI with libx264 and AAC, o
 installed Carla libraries. Record the platform each one ran on, and record a test
 that could not run as unverified rather than passed.
 
-## Qt reference frontend
-
-Qt/C++ and QML are kept as a behavior reference and are not part of the release
-archives. When a change touches shared Rust code or the C++ adapters, build it
-and run CTest before tagging:
-
-```text
-cmake -S . -B .build_tmp/qt-release -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build .build_tmp/qt-release --parallel 2
-ctest --test-dir .build_tmp/qt-release --output-on-failure
-```
-
 ## Packaging and smoke test
 
 - Package each platform with `python3 BUILD.py` (`--msvc` on Windows).
 - Confirm the archive contains the executable, `effects`, `objects`, `plugins`,
-  `effect-packages`, `repos`, the translations, and the required FFmpeg and Carla
-  runtime libraries, and that it contains no `Qt6*` runtime files.
+  `effect-packages`, `repos`, and the translations. `BUILD.py` stages
+  `catalog/effects`, `catalog/objects`, `plugins/`, `effect-packages/`, and
+  `repos/`; the archive must contain no `Qt6*` runtime files.
+- Every bundled package under `effect-packages/` must declare a
+  `min_app_version` no newer than the version being released, otherwise the
+  package manager refuses to install it.
 - Start the packaged build once with `--validate-gpu` and confirm the reported
   backend, the frame counts, and an empty `wgpu_errors` list.
 - On a host whose only adapter is a software renderer, confirm startup reports

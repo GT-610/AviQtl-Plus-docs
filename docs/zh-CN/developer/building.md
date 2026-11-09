@@ -1,6 +1,6 @@
 ---
 title: 从源码构建
-description: 在 Linux、macOS 或 Windows 上配置并构建 AviQtl-Plus。
+description: 在 Linux、macOS 或 Windows 上配置并构建 Freya NLE。
 ---
 
 # 从源码构建
@@ -8,8 +8,8 @@ description: 在 Linux、macOS 或 Windows 上配置并构建 AviQtl-Plus。
 克隆应用仓库。只有需要在本地阅读或修改本站时，才需要同时获取文档 submodule：
 
 ```bash
-git clone --recurse-submodules https://github.com/GT-610/AviQtl-Plus.git
-cd AviQtl-Plus
+git clone --recurse-submodules https://github.com/GT-610/Freya-NLE.git
+cd Freya-NLE
 ```
 
 只需要应用源码时，可以省略 `--recurse-submodules`。
@@ -22,19 +22,7 @@ cd AviQtl-Plus
 python3 BUILD.py
 ```
 
-### 前端选择
-
-`BUILD.py` 默认构建 **Rust + Slint 前端（建设中）**。迁移期间，旧 C++/QML（Qt）前端仍然可用：
-
-```bash
-# 旧 Qt 前端（debug 示例）
-python3 BUILD.py --xcode --frontend qt --debug
-
-# 指定 Qt6 安装路径
-python3 BUILD.py --xcode --frontend qt --qt-dir <Qt6 路径>
-```
-
-Qt 构建经 CMake（Ninja）输出到 `.build_tmp/<target>/<Config>/qt-build`，再把原始 Qt 产物（macOS 为 `AviQtl.app` 包，其余平台为 `AviQtl` 二进制）连同共享资源装配到 `build/`，归档名带 `-Qt` 后缀。这些是开发构建：有意跳过平台部署（`macdeployqt`/`windeployqt`），分发 Qt 构建前请先运行对应的部署工具。`--qt-dir` 仅对 Qt 构建有效；省略时通过 `PATH` 中的 `qmake6`/`qmake` 检测。
+构建的是 **Rust + Slint 前端**；自 0.8 移除 Qt 前端以来，这是唯一的前端。不再有 `--frontend` 与 `--qt-dir` 参数，也没有需要配置的 CMake 构建。
 
 常用平台模式包括：
 
@@ -54,8 +42,8 @@ python3 BUILD.py --msys2
 
 MSVC 构建仅支持 Visual Studio 2022（17.x）及更高版本。Visual Studio 2019
 及更早版本不受支持。`BUILD.py` 会通过 `vswhere` 选择受支持的 Visual
-Studio 安装，并拒绝旧工具集。使用旧 Qt 前端时还需要匹配的 Qt MSVC
-安装和 vcpkg。当前参数请查看 `python3 BUILD.py --help`。
+Studio 安装，并拒绝旧工具集。构建还需要 vcpkg。当前参数请查看
+`python3 BUILD.py --help`。
 
 ## 平台说明
 
@@ -70,20 +58,20 @@ Studio 安装，并拒绝旧工具集。使用旧 Qt 前端时还需要匹配的
 2. **构建**
    - `python3 BUILD.py --arch`
 3. **运行**
-   - `./build/AviQtl`
+   - `./build/freya-nle`
 
-容器还会安装 Qt 6、LuaJIT、Vulkan 实现（例如 Mesa）、FFmpeg、Carla 和 clang（提供 libc++）。
+容器还会安装 LuaJIT、Vulkan 实现（例如 Mesa）、FFmpeg、Carla 和 clang（提供 libc++）。
 
 ### macOS
 
-在 macOS 上，`BUILD.py` 通过 Homebrew 检查并安装依赖（CMake、Ninja、Qt6 等），然后执行 `macdeployqt` 和 `codesign` 创建 `.app` 包。
+在 macOS 上，`BUILD.py` 通过 Homebrew 检查并安装依赖（pkgconf、FFmpeg 等），然后生成并签名 `.app` 包。
 
 1. **安装依赖**
    - `brew install python git`
 2. **构建**
    - `python3 BUILD.py --xcode`
 3. **运行**
-   - `open ./build/AviQtl.app`
+   - `open "./build/Freya NLE.app"`
 
 ### Windows (MSVC，默认)
 
@@ -98,7 +86,7 @@ Rust 在 Windows 上需要 MSVC 主机工具链，因此不带目标参数的
    - `python3 BUILD.py`
    - 如需显式选择 MSYS2，请在 MSYS2 UCRT64 shell 中运行 `python3 BUILD.py --msys2`。
 3. **运行**
-   - `.\build\AviQtl.exe`
+   - `.\build\freya-nle.exe`
 
 ### Windows (MSYS2，显式替代方案)
 
@@ -107,18 +95,26 @@ Rust 在 Windows 上需要 MSVC 主机工具链，因此不带目标参数的
 2. **构建**
    - `python3 BUILD.py --msys2`
 3. **运行**
-   - `./build/AviQtl.exe`
+   - `./build/freya-nle.exe`
 
-## Qt 版本兼容性
+## 工具链
 
-项目目前使用 Qt 私有模块处理 ZIP、QRhi 集成和着色器工具。构建时与运行时的 Qt 补丁版本必须一致；升级 Qt 包后需要重新构建。
+Rust 版本锁定在 `rust-toolchain.toml` 中，CI 使用
+`dtolnay/rust-toolchain@1.97.1`。请确认 `PATH` 上生效的是锁定版本的
+工具链：系统包管理器安装的更新版 `cargo` 会优先于 `rustup` 的中间层，
+从而把弃用告警变成构建失败。在采信结果之前先检查 `cargo --version`。
 
 ## 测试与质量检查
 
-从已配置的构建目录运行测试：
+在仓库根目录运行检查：
 
 ```bash
-ctest --test-dir build --output-on-failure
+cargo fmt --manifest-path rust/Cargo.toml --all -- --check
+cargo clippy --manifest-path rust/Cargo.toml --locked --workspace --all-targets --all-features -- -D warnings
+cargo test --manifest-path rust/Cargo.toml --locked --workspace --all-features
+python -m unittest tests.test_build_version
 ```
 
-仓库还提供 `check.py` 执行格式、静态分析和其他质量检查。工具被跳过意味着缺少检查覆盖，而不是检查成功。
+需要 GPU 适配器、FFmpeg 命令行工具或已安装 Carla 库的测试默认标记为
+`#[ignore]`；详见[添加测试](https://github.com/GT-610/Freya-NLE/blob/main/CONTRIBUTING.md#adding-tests)。
+工具被跳过意味着缺少检查覆盖，而不是检查成功。

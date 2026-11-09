@@ -1,18 +1,18 @@
 ---
 title: About the project
-description: What AviQtl-Plus is, its history, and its relationship with the upstream NeoUtl project.
+description: What Freya NLE is, its history, and its relationship with the upstream NeoUtl project.
 ---
 
 # About the project
 
-## What is AviQtl-Plus?
+## What is Freya NLE?
 
-AviQtl-Plus is a free, open-source video editor that inherits the operability
+Freya NLE is a free, open-source video editor that inherits the operability
 of **AviUtl 1.10** and **ExEdit 0.92** while delivering **performance that
-surpasses AviUtl**. It is a cross-platform desktop application. The frontend
-is migrating from Qt Quick + QRhi to **Rust + Slint + wgpu** — Slint is the
-default build (under construction) — on top of an ECS-oriented core with a
-shared Rust workspace for timeline, effects, audio, rendering, and media.
+surpasses AviUtl**. It is a cross-platform desktop application. Its frontend is
+**Rust + Slint + wgpu**, the only build since the Qt Quick frontend was retired
+in 0.8, on top of an ECS-oriented core with a shared Rust workspace for
+timeline, effects, audio, rendering, and media.
 
 Its key strengths are:
 
@@ -40,21 +40,15 @@ As a result, three NeoUtl-related projects now exist in parallel:
   rebuilt with Rust + Slint + wgpu.
 - **[AviQtl](https://codeberg.org/taisho-guy/NeoUtl/src/branch/aviqtl)** — the
   original Qt Quick-based version, continuing as "AviQtl".
-- **AviQtl-Plus (this project)** — a fork continuing the Qt Quick + QRhi + ECS
-  approach, now migrating its frontend to Rust + Slint + wgpu.
+- **Freya NLE (this project)** — a fork that began on the Qt Quick + QRhi + ECS
+  approach and moved to **Rust + Slint + wgpu** in 0.8.
 
-## Frontend migration
+## Frontend
 
-The default `BUILD.py` build now targets the **Rust + Slint frontend**
-(under construction). While the migration is in progress, the legacy Qt
-Quick frontend remains available for development use:
-
-```bash
-python3 BUILD.py --xcode --frontend qt --debug
-```
-
-Qt builds are undeployed development binaries; see
-[Build from source](../../developer/building#frontend-selection) for details.
+`python3 BUILD.py` builds the **Rust + Slint frontend**, the only frontend since
+0.8. The Qt Quick frontend and its C++ support library were removed in the same
+release, so there is no `--frontend` flag and no CMake build to configure. See
+[Build from source](../../developer/building) for details.
 
 ### Why the original project paused
 
@@ -69,9 +63,9 @@ The original author has since moved to a new technology stack based on
 **Rust + Slint + wgpu**, abandoning the Qt Widgets + SDL3 + bgfx approach that
 was initially planned.
 
-### How AviQtl-Plus addresses them
+### How Freya NLE addresses them
 
-Building on the insights gained from the original project, AviQtl-Plus tackles
+Building on the insights gained from the original project, Freya NLE tackles
 these challenges:
 
 1. **Compute Shader integration** — circumventing Qt Quick's constraints to
@@ -82,13 +76,13 @@ these challenges:
    deliver a smooth editing experience.
 
 The vision remains unchanged: **a video editor that inherits and surpasses
-AviUtl**. We believe the Qt Quick + QRhi + ECS approach is a viable and valuable
+AviUtl**. We believe the Rust + Slint + wgpu approach is a viable and valuable
 path — one we are committed to maturing into a practical, everyday editing tool.
 
 ### Relationship with the new NeoUtl
 
-The original author and the AviQtl-Plus maintainer keep a friendly relationship.
-If any contribution from AviQtl-Plus proves applicable to the new NeoUtl
+The original author and the Freya NLE maintainer keep a friendly relationship.
+If any contribution from Freya NLE proves applicable to the new NeoUtl
 (Rust + Slint + wgpu), it will gladly be submitted upstream. Similarly, both
 projects hope their innovations can cross-pollinate over time, ultimately
 benefiting all users who seek a modern, powerful, and intuitive AviUtl
@@ -96,7 +90,7 @@ successor.
 
 The old Qt Quick source code remains available on the
 [`aviqtl` branch](https://codeberg.org/taisho-guy/NeoUtl/src/branch/aviqtl), and
-the original author recommends AviQtl-Plus to users who prefer the Qt Quick
+the original author recommends Freya NLE to users who prefer the Qt Quick
 approach.
 
 ## Roadmap
@@ -104,7 +98,7 @@ approach.
 The project is entirely driven by personal motivation — there are no deadlines
 or commercial pressures. Progress is steady but paced.
 
-**Completed (0.3.x–0.5.x):**
+**Completed (0.3.x–0.8.x):**
 
 - LuaJIT plugin system with lifecycle hooks, declarative parameters, and
   fine-grained permission control, plus a package manager for remote
@@ -120,8 +114,9 @@ or commercial pressures. Progress is steady but paced.
   workloads.
 - Green release baselines across Linux, macOS, and Windows with version and tag
   consistency checks.
+- The Rust + Slint frontend as the only build, and the rename from AviQtl-Plus.
 
-**Next (0.5.9+):**
+**Next (0.8.x+):**
 
 - Run performance workloads against a maintained corpus of representative
   production media and third-party plugins.
