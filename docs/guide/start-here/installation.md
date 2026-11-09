@@ -35,8 +35,8 @@ using an Arch container through Distrobox is recommended.
 You may need to grant execute permission after extracting the archive:
 
 ```bash
-chmod +x AviQtl
-./AviQtl
+chmod +x freya-nle
+./freya-nle
 ```
 
 We're also planning platform-specific packages and AppImage release. These will be shipped in the future.
@@ -49,7 +49,7 @@ only when it was downloaded from the official release.
 
 ## Requirements
 
-AviQtl renders on the GPU: the preview, the export pipeline, and hardware codec
+Freya NLE renders on the GPU: the preview, the export pipeline, and hardware codec
 acceleration all need a GPU-backed adapter. A host that exposes only a software
 renderer, such as the Microsoft Basic Render Driver, is reported as unsupported
 at startup instead of failing later.

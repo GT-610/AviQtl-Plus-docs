@@ -38,7 +38,7 @@ The concept of a layer is similar to the "tracks" found in most video editing so
 :::
 
 ::: warning
-In Freya NLE, **higher-numbered layers render on top**: for example, layer 3 appears above layer 2. This matches AviQtl, but may be the opposite of some other video editors.
+In Freya NLE, **higher-numbered layers render on top**: for example, layer 3 appears above layer 2. This matches AviUtl, but may be the opposite of some other video editors.
 :::
 
 Import an image, video, or audio file, or drag it into the timeline. You can place your first visual clip at frame `0` on a visible layer, or anywhere else you like.

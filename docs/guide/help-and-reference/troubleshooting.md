@@ -20,7 +20,7 @@ operating system, graphics hardware, and exact steps that reproduce the issue.
 - On Linux, verify the Vulkan driver and runtime, the FFmpeg shared libraries,
   libxkbcommon, and the X11 or Wayland client libraries.
 - If startup reports that no GPU-backed adapter was found, update the graphics
-  driver; a software renderer cannot run AviQtl.
+  driver; a software renderer cannot run Freya NLE.
 - Update the graphics driver or Vulkan/Metal/Direct3D runtime.
 - Start from a terminal and keep the diagnostic output.
 

@@ -63,7 +63,7 @@ by default.
 2. **Build**
    - `python3 BUILD.py --arch`
 3. **Run**
-   - `./build/Freya NLE`
+   - `./build/freya-nle`
 
 The container also installs LuaJIT, a Vulkan implementation (for example
 Mesa), FFmpeg, Carla, and clang (which provides libc++).
@@ -95,7 +95,7 @@ for environments that provide the matching GNU Rust target and dependencies.
    - `python3 BUILD.py`
    - To select MSYS2 explicitly, use `python3 BUILD.py --msys2` from an MSYS2 UCRT64 shell.
 3. **Run**
-   - `.\build\Freya NLE.exe`
+   - `.\build\freya-nle.exe`
 
 ### Windows (MSYS2, explicit alternative)
 
@@ -104,7 +104,7 @@ for environments that provide the matching GNU Rust target and dependencies.
 2. **Build**
    - `python3 BUILD.py --msys2`
 3. **Run**
-   - `./build/Freya NLE.exe`
+   - `./build/freya-nle.exe`
 
 ## Toolchain
 

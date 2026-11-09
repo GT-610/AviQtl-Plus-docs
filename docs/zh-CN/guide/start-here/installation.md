@@ -26,8 +26,8 @@ Linux 构建需要支持 Vulkan 的显卡驱动及其 Vulkan 运行环境、FFmp
 解压后可能需要授予执行权限：
 
 ```bash
-chmod +x AviQtl
-./AviQtl
+chmod +x freya-nle
+./freya-nle
 ```
 
 我们也计划提供平台专用的软件包和 AppImage 发行版本，未来会陆续发布。
@@ -38,7 +38,7 @@ chmod +x AviQtl
 
 ## 运行要求
 
-AviQtl 的渲染全部在 GPU 上完成：预览、导出管线与硬件编码加速都需要可用的 GPU 适配器。如果主机只提供软件渲染器（例如 Microsoft Basic Render Driver），程序会在启动时报告该主机不受支持，而不是稍后失败。
+Freya NLE 的渲染全部在 GPU 上完成：预览、导出管线与硬件编码加速都需要可用的 GPU 适配器。如果主机只提供软件渲染器（例如 Microsoft Basic Render Driver），程序会在启动时报告该主机不受支持，而不是稍后失败。
 
 ## 首次启动检查
 
