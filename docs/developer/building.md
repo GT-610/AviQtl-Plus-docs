@@ -59,7 +59,7 @@ glibc the binary needs, and a Homebrew bottle decides which macOS it needs.
 
 ```bash
 scripts/build-ffmpeg.sh --target x86_64-unknown-linux-gnu
-export FFMPEG_DIR="$PWD/build/ffmpeg/x86_64-unknown-linux-gnu"
+export FFMPEG_DIR="$PWD/.build_tmp/ffmpeg/x86_64-unknown-linux-gnu"
 ```
 
 `--target` is a Rust triple; the script accepts `x86_64-unknown-linux-gnu`,
@@ -150,7 +150,7 @@ for environments that provide the matching GNU Rust target and dependencies.
 ## Toolchain
 
 The Rust version is pinned in `rust-toolchain.toml`, and CI uses
-`dtolnay/rust-toolchain@1.97.1`. Make sure the pinned toolchain is the one on
+`dtolnay/rust-toolchain@1.99.1`. Make sure the pinned toolchain is the one on
 `PATH`: a newer `cargo` from a system package manager takes precedence over the
 `rustup` shim and can turn deprecation lints into build failures. Check
 `cargo --version` before trusting a result.

@@ -100,7 +100,7 @@ Rust 在 Windows 上需要 MSVC 主机工具链，因此不带目标参数的
 ## 工具链
 
 Rust 版本锁定在 `rust-toolchain.toml` 中，CI 使用
-`dtolnay/rust-toolchain@1.97.1`。请确认 `PATH` 上生效的是锁定版本的
+`dtolnay/rust-toolchain@1.99.1`。请确认 `PATH` 上生效的是锁定版本的
 工具链：系统包管理器安装的更新版 `cargo` 会优先于 `rustup` 的中间层，
 从而把弃用告警变成构建失败。在采信结果之前先检查 `cargo --version`。
 
