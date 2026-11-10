@@ -12,8 +12,6 @@ Download a build for your platform from the
 Extract the archive to a folder you can write to, then start the Freya NLE
 executable.
 
-![Freya NLE release assets on GitHub](/images/guide/installation/release-assets.png)
-
 Every file is named `Freya-NLE-<version>-<os>-<arch>`, with a suffix when a
 build only runs on a narrower system than its OS and architecture imply. Pick
 the file that matches your operating system and processor:

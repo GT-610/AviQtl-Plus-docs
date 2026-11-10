@@ -9,8 +9,6 @@ description: 在 Windows、Linux 或 macOS 上下载并启动 Freya NLE。
 
 从 [Freya NLE Releases 页面](https://github.com/GT-610/Freya-NLE/releases)下载适用于你的平台的构建。将压缩包解压到具有写入权限的目录，然后启动 Freya NLE 可执行文件。
 
-![GitHub 上的 Freya NLE 发行文件列表](/images/guide/installation/release-assets.png)
-
 所有发行文件都命名为 `Freya-NLE-<版本>-<系统>-<架构>`；如果某个构建只能在比"系统 + 架构"更窄的环境下运行，会再追加一个后缀。请选择与你的操作系统和处理器匹配的文件：
 
 | 你的系统 | 下载 |
