@@ -31,11 +31,17 @@ CMake build to configure.
 Common platform-specific modes include:
 
 ```bash
-# Linux container-based environment
+# Linux, portable AppImage (the recommended Linux build)
+python3 BUILD.py --appimage
+
+# Linux, Arch-compatible archive
 python3 BUILD.py --arch
 
-# macOS Xcode generator
+# macOS bundle
 python3 BUILD.py --xcode
+
+# macOS bundle for Intel, cross-compiled on an Apple Silicon host
+python3 BUILD.py --xcode --target x86_64-apple-darwin
 
 # Windows with the default MSVC toolchain
 python3 BUILD.py
@@ -43,6 +49,25 @@ python3 BUILD.py
 # Windows with MSYS2 (explicit alternative)
 python3 BUILD.py --msys2
 ```
+
+## FFmpeg
+
+Releases link one pinned FFmpeg rather than whatever the host provides, because
+the host's copy decides the runtime floor: a distribution's FFmpeg decides which
+glibc the binary needs, and a Homebrew bottle decides which macOS it needs.
+`scripts/build-ffmpeg.sh` builds that pinned version:
+
+```bash
+scripts/build-ffmpeg.sh --target x86_64-unknown-linux-gnu
+export FFMPEG_DIR="$PWD/build/ffmpeg/x86_64-unknown-linux-gnu"
+```
+
+`--target` is a Rust triple; the script accepts `x86_64-unknown-linux-gnu`,
+`aarch64-apple-darwin`, and `x86_64-apple-darwin`. It needs `nasm` for the
+assembly kernels and fails without it rather than silently building a much
+slower encoder. `BUILD.py` runs it automatically for the macOS and AppImage
+targets when `brew` or the container is available; setting `FFMPEG_DIR`
+yourself makes `cargo` use your build instead.
 
 MSVC builds require Visual Studio 2022 (17.x) or newer. Visual Studio 2019
 and earlier are not supported. `BUILD.py` selects a supported Visual Studio
@@ -53,32 +78,48 @@ requires vcpkg. See `python3 BUILD.py --help` for the current options.
 
 ### Linux
 
-On Linux, the build environment is isolated using a distrobox/podman container
-by default.
+On Linux the build environment is isolated in a container by default: `distrobox`
+when it is installed, and plain `podman` otherwise. The image is pinned to a
+digest, because an unpinned image silently changes the glibc and FFmpeg
+a rebuild links against.
 
 1. **Install dependencies**
    - Pacman: `sudo pacman -S --needed distrobox podman python git`
    - APT: `sudo apt install distrobox podman python3 git`
    - DNF: `sudo dnf install distrobox podman python3 git`
+   - macOS with podman: `brew install podman`, then `podman machine init`
+     (distrobox is not needed, and is not packaged for macOS)
 2. **Build**
-   - `python3 BUILD.py --arch`
+   - `python3 BUILD.py --appimage` for the portable build
+   - `python3 BUILD.py --arch` for the Arch-compatible archive
 3. **Run**
    - `./build/freya-nle`
 
-The container also installs LuaJIT, a Vulkan implementation (for example
-Mesa), FFmpeg, Carla, and clang (which provides libc++).
+The AppImage target builds on a pinned Ubuntu 22.04 image so the binary asks for
+the oldest glibc the toolchain supports; the Arch target builds on the pinned
+Arch image. Building the AppImage on a newer distribution links that
+distribution's glibc and defeats the purpose, which is why CI jobs run inside
+the pinned images rather than on the runner's own Ubuntu.
 
 ### macOS
 
-On macOS, `BUILD.py` checks and installs dependencies via Homebrew (pkgconf,
-FFmpeg, etc.), then produces and codesigns a `.app` bundle.
+On macOS, `BUILD.py` installs its build dependencies via Homebrew, builds the
+pinned FFmpeg, then produces and ad-hoc signs a `.app` bundle.
 
 1. **Install dependencies**
-   - `brew install python git`
+   - `brew install python git pkgconf nasm`
 2. **Build**
    - `python3 BUILD.py --xcode`
+   - Add `--target x86_64-apple-darwin` for the Intel bundle; run
+     `rustup target add x86_64-apple-darwin` first
 3. **Run**
    - `open "./build/Freya NLE.app"`
+
+`MACOSX_DEPLOYMENT_TARGET` is exported during the build so every dependency
+compiled from source agrees on one floor. Packaging measures the result and
+declares the honest `LSMinimumSystemVersion`; pass
+`--strict-deployment-target` to turn a dependency that needs a newer system
+into a build failure instead of a widened support range.
 
 ### Windows (MSVC, default)
 

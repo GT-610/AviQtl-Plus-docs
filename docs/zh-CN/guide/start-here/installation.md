@@ -11,30 +11,55 @@ description: 在 Windows、Linux 或 macOS 上下载并启动 Freya NLE。
 
 ![GitHub 上的 Freya NLE 发行文件列表](/images/guide/installation/release-assets.png)
 
-选择与你的操作系统和处理器架构匹配的压缩包。
+所有发行文件都命名为 `Freya-NLE-<版本>-<系统>-<架构>`；如果某个构建只能在比"系统 + 架构"更窄的环境下运行，会再追加一个后缀。请选择与你的操作系统和处理器匹配的文件：
+
+| 你的系统 | 下载 |
+| :--- | :--- |
+| Windows 64 位 | `Freya-NLE-<版本>-windows-x86_64.zip` |
+| Apple Silicon 上的 macOS | `Freya-NLE-<版本>-macos-arm64.zip` |
+| Intel 上的 macOS | `Freya-NLE-<版本>-macos-x86_64.zip` |
+| Linux（任意发行版） | `Freya-NLE-<版本>-linux-x86_64.AppImage` |
+| Linux（Arch current） | `Freya-NLE-<版本>-linux-x86_64-archlinux.tar.zst` |
+
+同一版本的发行页面还提供 `SHA256SUMS`，列出了每个文件的校验和，可以在运行前校验下载结果。
+
+每个压缩包内都带有 `build-info.json`，记录了它由哪个提交构建、链接的 Rust 与 FFmpeg 版本，以及它实际要求的最低系统版本。
 
 ## 平台说明
 
 ### Windows
 
-使用较新的 64 位 Windows 系统。如果 Windows 显示安全提示，先确认压缩包来自官方发行页面，再允许其运行。
+使用较新的 64 位 Windows 系统。既不需要安装程序，也不需要单独安装运行库：将压缩包解压到具有写入权限的目录，直接运行 `freya-nle.exe` 即可，Visual C++ 运行库随压缩包一起分发。
+
+如果 Windows 显示安全提示，先确认压缩包来自官方发行页面，再允许其运行。
 
 ### Linux
 
-Linux 构建需要支持 Vulkan 的显卡驱动及其 Vulkan 运行环境、FFmpeg 共享库、libxkbcommon，以及 X11 或 Wayland 客户端库。Carla 仅在需要 VST3、LV2 音频效果时才需要。项目主要面向与 Arch Linux 等效的环境；在较旧的发行版上，建议通过 Distrobox 使用 Arch 容器。
-
-解压后可能需要授予执行权限：
+在任何发行版上都应下载 AppImage。它自带 FFmpeg 及其余运行库，因此与你使用哪个发行版无关：
 
 ```bash
-chmod +x freya-nle
+chmod +x Freya-NLE-*.AppImage
+./Freya-NLE-*.AppImage
+```
+
+它需要支持 Vulkan 的显卡驱动及其 Vulkan 运行环境、ALSA，以及 X11 或 Wayland 客户端库——桌面系统通常都已具备。Carla 仅在需要 VST3、LV2 音频效果时才需要。
+
+如果系统没有 FUSE，或你身处容器中，请用 `--appimage-extract-and-run` 运行。
+
+`-archlinux` 压缩包是另一种 Linux 构建：它链接 Arch Linux 当前的 glibc 与 FFmpeg，因此可在 Arch 及其衍生版上运行，但在较旧的发行版上无法运行；它所需的 glibc 版本写在包内的 `build-info.json` 里。解压后直接运行可执行文件：
+
+```bash
+tar --zstd -xf Freya-NLE-*.tar.zst
 ./freya-nle
 ```
 
-我们也计划提供平台专用的软件包和 AppImage 发行版本，未来会陆续发布。
+解压后会保留执行权限，无需再执行 `chmod`。
 
 ### macOS
 
-从 Finder 打开应用包。如果 macOS 阻止首次启动，请在 **系统设置 → 隐私与安全性** 中检查应用，并仅在确认其来自官方发行页面后允许启动。
+从 Finder 打开应用包。应用包使用 ad-hoc 签名而非公证，因此首次启动会被阻止，需要在 **系统设置 → 隐私与安全性** 中放行——并且仅在确认压缩包来自官方发行页面后才这样做。
+
+Intel 与 Apple Silicon 是各自独立的下载，因为每个包只包含一种架构；两者都不需要 Rosetta。
 
 ## 运行要求
 
