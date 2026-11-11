@@ -60,6 +60,11 @@ Carla is required only for VST3 and LV2 audio effects.
 If your system does not have FUSE, or you are inside a container, run it with
 `--appimage-extract-and-run`.
 
+The build is for 64-bit x86_64 systems and needs glibc 2.35 or newer — Ubuntu
+22.04 and later, Debian 12 and later, or any distribution at least that recent.
+There is no official build for ARM systems, and a system older than that glibc
+cannot run the image.
+
 The `-archlinux` archive is the other Linux build: it is linked against Arch
 Linux's current glibc and FFmpeg, so it runs on Arch and its derivatives but not
 on an older distribution. Its `build-info.json` names the glibc version it
