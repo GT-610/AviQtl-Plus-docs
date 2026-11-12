@@ -1,9 +1,9 @@
 ---
-title: Fragment files (.aviqtlfrag)
+title: Fragment files (.freyafrag)
 description: How Freya NLE saves a block of clips as a fragment, and how that differs from an AviUtl object file.
 ---
 
-# Fragment files (`.aviqtlfrag`)
+# Fragment files (`.freyafrag`)
 
 A **fragment** is a block of clips saved on its own: a title card, an effect chain, a whole
 scene's worth of layered objects. It is what a user reaches for when work has to leave the
@@ -27,7 +27,7 @@ nothing is lost.
 
 ## Choosing between the two formats
 
-| | Fragment (`.aviqtlfrag`) | AviUtl object file (`.exo`) |
+| | Fragment (`.freyafrag`) | AviUtl object file (`.exo`) |
 | --- | --- | --- |
 | Reading | Lossless | Translated; anything unknown becomes a disabled placeholder |
 | Writing | Lossless, every clip | Not supported — Freya NLE does not write one |
@@ -44,7 +44,7 @@ A fragment is UTF-8 JSON, with a marker that tells it apart from a project docum
 
 ```json
 {
-  "format": "aviqtl.fragment",
+  "format": "freya.fragment",
   "version": 1,
   "settings": { "width": 1920, "height": 1080, "fps": 60, "sampleRate": 48000 },
   "clips": [
@@ -64,9 +64,10 @@ A fragment is UTF-8 JSON, with a marker that tells it apart from a project docum
 }
 ```
 
-- `format` is always `aviqtl.fragment`. A reader rejects a file whose marker is missing or
-  different, which is how a project document opened by mistake is caught before it produces
-  nonsense.
+- `format` is `freya.fragment`. The reader also accepts `aviqtl.fragment`, which is what
+  every fragment written before 0.7.0-rc.2 carries, and writes `freya.fragment` back on the
+  next save. A file with neither marker is rejected, which is how a project document opened
+  by mistake is caught before it produces nonsense.
 - `version` is the layout version. A reader refuses versions it does not know rather than
   guessing, because a half-understood fragment would import silently wrong.
 - `settings` records the frame rate, frame size, and audio rate the clips were authored

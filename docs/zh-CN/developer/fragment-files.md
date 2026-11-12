@@ -1,9 +1,9 @@
 ---
-title: 片段文件（.aviqtlfrag）
+title: 片段文件（.freyafrag）
 description: Freya NLE 如何把一组片段保存为片段文件，以及它与 AviUtl 物件文件的区别。
 ---
 
-# 片段文件（`.aviqtlfrag`）
+# 片段文件（`.freyafrag`）
 
 **片段**是单独保存的一组片段物件：一张标题卡、一条效果链、一整个场景的图层内容。当工作内容需要离开它原本所在的项目时，用户要的就是它。
 
@@ -17,7 +17,7 @@ AviUtl 用[物件文件](./exo-object-files)（`.exo`）解决同一个问题，
 
 ## 两种格式怎么选
 
-| | 片段（`.aviqtlfrag`） | AviUtl 物件文件（`.exo`） |
+| | 片段（`.freyafrag`） | AviUtl 物件文件（`.exo`） |
 | --- | --- | --- |
 | 读取 | 无损 | 翻译；无法识别的部分变成禁用的占位项 |
 | 写出 | 无损，包含全部片段 | 不支持——Freya NLE 不写物件文件 |
@@ -32,7 +32,7 @@ AviUtl 用[物件文件](./exo-object-files)（`.exo`）解决同一个问题，
 
 ```json
 {
-  "format": "aviqtl.fragment",
+  "format": "freya.fragment",
   "version": 1,
   "settings": { "width": 1920, "height": 1080, "fps": 60, "sampleRate": 48000 },
   "clips": [
@@ -52,7 +52,7 @@ AviUtl 用[物件文件](./exo-object-files)（`.exo`）解决同一个问题，
 }
 ```
 
-- `format` 恒为 `aviqtl.fragment`。标记缺失或不同一律拒绝读取——误把工程文件当片段打开时，会在这里被拦下，而不是产出一堆无意义的内容。
+- `format` 为 `freya.fragment`。读取端同时接受 `aviqtl.fragment`——0.7.0-rc.2 之前写出的片段都用这个标记，下次保存时会改写成 `freya.fragment`。两个标记都没有的文件一律拒绝读取——误把工程文件当片段打开时，会在这里被拦下，而不是产出一堆无意义的内容。
 - `version` 是布局版本。读不懂的版本直接拒绝，不做猜测：半懂不懂地导入只会悄悄出错。
 - `settings` 记录这些片段创作时的帧率、画面尺寸和音频采样率。导入时**不做任何缩放**；目标场景与它不一致时，导入报告会明说，而不是悄悄改变时间长度。
 - `clips` 原样保存项目中的片段，包括本版本会写出但暂未读取的字段。导入时 `id` 与 `sceneId` 会被替换。

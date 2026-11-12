@@ -7,8 +7,8 @@ description: Build, understand, extend, and contribute to Freya NLE.
 
 Freya NLE is a shared Rust workspace (timeline, effects, audio,
 rendering, media) behind the **Rust + Slint + wgpu** UI, the only frontend since
-the Qt Quick frontend was retired in 0.8. The workspace provides ECS-oriented
-timeline data, FFmpeg media processing, LuaJIT plugins, native effect packages,
+the Qt Quick frontend was retired in 0.8. The workspace provides typed
+timeline data, FFmpeg media processing, Lua plugins, native effect packages,
 and wgpu rendering.
 
 ## Start contributing

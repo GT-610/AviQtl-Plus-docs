@@ -22,7 +22,7 @@ features:
   - title: 站在巨人的肩膀上
     details: 如果你熟悉 AviUtl、Vegas 或 After Effects，只需几个小时就能掌握 Freya NLE。
   - title: 开放的扩展体系
-    details: 构建 Freya NLE、创建 GPU 效果与对象，或使用 LuaJIT 插件自动化工作流。
+    details: 构建 Freya NLE、创建 GPU 效果与对象，或使用 Lua 插件自动化工作流。
 ---
 
 ## 文档状态

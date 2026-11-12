@@ -1,11 +1,11 @@
 ---
 title: Plugin development
-description: Create LuaJIT plugins that automate Freya NLE workflows.
+description: Create Lua plugins that automate Freya NLE workflows.
 ---
 
 # Plugin development
 
-LuaJIT plugins can automate transport, timeline, project, scene, settings, and
+Lua plugins can automate transport, timeline, project, scene, settings, and
 other application workflows. Plugins are permission-controlled and can expose
 declarative parameters to users.
 

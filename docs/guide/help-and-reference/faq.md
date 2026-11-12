@@ -39,20 +39,22 @@ AviUtl, its internals are entirely different.
 
 | Item | Freya NLE | ExEdit0 | ExEdit2 |
 | :--- | :--- | :--- | :--- |
-| Core technology | Rust + Slint (Qt6 legacy) | Win32 API | Win32 API |
-| Parallelism model | Data-driven (ECS) | Single-threaded | Multi-threaded |
+| Core technology | Rust + Slint + wgpu | Win32 API | Win32 API |
+| Parallelism model | GPU compositing, threaded decode and export | Single-threaded | Multi-threaded |
 | Memory space | 64-bit | 32-bit (max 4GB) | 64-bit |
 | Preview rendering | Vulkan / Metal / DX12 | GDI | DX11 |
 | Audio engine | Carla (VST3/LV2 etc.) | Built-in only | Built-in only |
-| Plugin system | LuaJIT / C++ / QML / GLSL | Lua / C++ | LuaJIT / C++ |
+| Plugin system | Lua 5.1 (sandboxed) / WGSL effect packages | Lua / C++ | LuaJIT / C++ |
 | Supported OS | Linux, Windows, macOS | Windows | Windows |
 
 Freya NLE fundamentally resolves structural weaknesses:
 
-1. **Data-oriented design with ECS (Entity Component System):** Maximizes CPU
-   cache efficiency, accelerating processing of large numbers of objects.
-2. **Modern memory management:** Adopts C++23 smart pointers, structurally
-   minimizing unexplained crashes.
+1. **The compositor runs on the GPU:** effect chains, blends, and preview compositing
+   are wgpu compute and render passes, so the cost scales with the frame rather than with
+   the number of objects on the CPU.
+2. **Ownership instead of manual memory management:** the renderer, decoder, and exporter
+   are Rust crates with no `unsafe` outside the documented FFmpeg and Carla bridges, which
+   removes the class of crash that motivated the port.
 3. **Separation of UI and rendering:** Timeline operations are not blocked
    during heavy rendering, and the UI remains crisp in High-DPI environments.
 
@@ -74,29 +76,26 @@ implement a compatibility layer either.
 
 ## Why continue Freya NLE development?
 
-The original project was suspended due to genuine technical difficulties with Qt
-Quick — but it also proved that **Qt + FFmpeg can rapidly produce a high-quality
-video editor prototype**. The architecture is well-designed, the foundation is
-solid, and the Qt Quick route is still worth pursuing, especially now that QRhi
-provides a viable compute shader path that wasn't fully explored.
+The original project was suspended over genuine technical difficulties with Qt
+Quick, but it also proved that **Qt + FFmpeg can produce a high-quality video
+editor prototype quickly**. As an early core contributor, the maintainer picked
+up where the original author left off, to see the original vision through: a
+video editor that inherits AviUtl's operability while surpassing its performance.
 
-As an early core contributor, the maintainer has seen the project's potential
-firsthand and picked up where the original author left off — not just to keep
-the code alive, but to see the original vision through: a video editor that
-inherits AviUtl's operability while surpassing its performance.
+Qt Quick was not the part worth keeping. Freya NLE keeps the editing model — the
+object-and-effect timeline that makes AviUtl usable — and rebuilt the frontend on
+**Rust + Slint + wgpu**, which is the only build as of 0.8.
 
 ## How is Freya NLE different from the original project?
 
-The technical direction remains largely the same (Qt Quick + QRhi + ECS), but
-Freya NLE places greater emphasis on:
+Freya NLE now shares AviUtl's *editing model* with the upstream project rather
+than its implementation. What it emphasizes:
 
 - **Incremental deliverability:** getting a basic but usable editing workflow
   out the door, rather than pursuing architectural perfection upfront.
-- **Pragmatic problem-solving:** working within Qt Quick's constraints rather
-  than treating them as blockers.
+- **Pragmatic problem-solving:** changing the parts that block progress — the
+  frontend and the renderer — instead of working around them.
 - **Community transparency:** clear documentation of the fork relationship,
   plans, and long-term intentions.
 
-Once the project reaches a usable state, a rename and rebranding are likely to
-clearly distinguish it from the original project. See
-[About the project](../start-here/about) for the roadmap.
+See [About the project](../start-here/about) for the roadmap.

@@ -61,7 +61,7 @@ and a clip keeps working when its entry is gone.
 
 ## Fragments
 
-A fragment (`.aviqtlfrag`) is a block of clips saved on its own, so it can be used
+A fragment (`.freyafrag`) is a block of clips saved on its own, so it can be used
 again in another scene or project. **File → Export Fragment…** writes the selected
 clips, or the whole scene when nothing is selected; **File → Insert Fragment…** adds
 them back, and dropping the file on the timeline places it at the pointer.

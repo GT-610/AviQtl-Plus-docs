@@ -60,7 +60,7 @@ Studio 安装，并拒绝旧工具集。构建还需要 vcpkg。当前参数请�
 3. **运行**
    - `./build/freya-nle`
 
-容器还会安装 LuaJIT、Vulkan 实现（例如 Mesa）、FFmpeg、Carla 和 clang（提供 libc++）。
+容器还会安装 Lua 5.1、Vulkan 实现（例如 Mesa）、FFmpeg、Carla 和 clang（提供 libc++）。
 
 ### macOS
 

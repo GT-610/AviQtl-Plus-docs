@@ -5,7 +5,7 @@ description: 构建、理解、扩展并参与 Freya NLE 开发。
 
 # 开发者文档
 
-Freya NLE 以共享的 Rust 工作区（时间线、特效、音频、渲染、媒体）为基础，对外提供 **Rust + Slint + wgpu** 界面；自 0.8 移除 Qt 前端以来，这是唯一的前端。该工作区提供面向 ECS 的时间线数据、FFmpeg 媒体处理、LuaJIT 插件、原生效果包与 wgpu 渲染。
+Freya NLE 以共享的 Rust 工作区（时间线、特效、音频、渲染、媒体）为基础，对外提供 **Rust + Slint + wgpu** 界面；自 0.8 移除 Qt 前端以来，这是唯一的前端。该工作区提供类型化的时间线数据、FFmpeg 媒体处理、Lua 插件、原生效果包与 wgpu 渲染。
 
 ## 开始贡献
 

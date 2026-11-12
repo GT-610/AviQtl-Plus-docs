@@ -39,7 +39,7 @@ Modernization wins when it removes structural limits:
   and crash-resistant settings.
 - Unicode-safe paths, high-DPI UI, localization, accessibility, and predictable
   keyboard behavior.
-- Safe extension points through packages, LuaJIT plugins, QML, GLSL, and
+- Safe extension points through packages, Lua plugins, QML, GLSL, and
   permission controls.
 
 ## Non-Goals

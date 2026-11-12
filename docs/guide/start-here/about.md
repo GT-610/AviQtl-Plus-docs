@@ -11,8 +11,8 @@ Freya NLE is a free, open-source video editor that inherits the operability
 of **AviUtl 1.10** and **ExEdit 0.92** while delivering **performance that
 surpasses AviUtl**. It is a cross-platform desktop application. Its frontend is
 **Rust + Slint + wgpu**, the only build since the Qt Quick frontend was retired
-in 0.8, on top of an ECS-oriented core with a shared Rust workspace for
-timeline, effects, audio, rendering, and media.
+in 0.8, on top of a shared Rust workspace covering the timeline model, effects,
+audio, rendering, and media.
 
 Its key strengths are:
 
@@ -65,15 +65,17 @@ was initially planned.
 
 ### How Freya NLE addresses them
 
-Building on the insights gained from the original project, Freya NLE tackles
-these challenges:
+Building on the insights gained from the original project, Freya NLE answers
+them by removing the layer that caused them:
 
-1. **Compute Shader integration** — circumventing Qt Quick's constraints to
-   leverage GPU compute for high-performance effect processing.
-2. **ECS architecture optimization** — maximizing the benefits of data-oriented
-   design while resolving friction with Qt Quick.
-3. **Real-time performance** — eliminating preview rendering bottlenecks to
-   deliver a smooth editing experience.
+1. **GPU compute for effect processing** — effect chains are wgpu compute and
+   render passes, so no UI toolkit's resource model sits between the planner and
+   the GPU.
+2. **A typed timeline model instead of an ECS** — `freya-nle-core` owns the
+   document, the edit plans, and the bake output, which keeps undo, redo, and
+   rendering reading one representation.
+3. **Real-time performance** — preview compositing and decoding are off the UI
+   thread, so editing does not stall behind a render.
 
 The vision remains unchanged: **a video editor that inherits and surpasses
 AviUtl**. We believe the Rust + Slint + wgpu approach is a viable and valuable
@@ -100,7 +102,7 @@ or commercial pressures. Progress is steady but paced.
 
 **Completed (0.3.x–0.8.x):**
 
-- LuaJIT plugin system with lifecycle hooks, declarative parameters, and
+- Lua plugin system with lifecycle hooks, declarative parameters, and
   fine-grained permission control, plus a package manager for remote
   repositories.
 - Thread-safe audio processing, HDR and multi-pass Compute Shader effects, and

@@ -22,7 +22,7 @@ features:
   - title: Standing on the shoulders of giants
     details: You'll get mastered with Freya NLE in a couple of hours if you are familiar with AviUtl, Vegas or After Effects.
   - title: Open to extension
-    details: Build Freya NLE, create GPU effects and objects, or automate workflows with LuaJIT plugins.
+    details: Build Freya NLE, create GPU effects and objects, or automate workflows with Lua plugins.
 ---
 
 ## Documentation status

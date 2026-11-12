@@ -100,7 +100,7 @@ parameter semantics are known, so a new entry needs evidence for each.
 3. Add a `FilterMapping` (or an `ObjectMapping` / figure type) with the Chinese, Japanese, and
    English spellings. The CN pack, stock ExEdit, and some tools each spell names differently.
 4. Import a file that contains the filter, with `AVIUTL_SAMPLES` pointing at an AviUtl
-   package: `cargo test -p aviqtl-app --test exo_samples -- --ignored`. The test imports every
+   package: `cargo test -p freya-nle-app --test exo_samples -- --ignored`. The test imports every
    shipped file and checks that each object becomes a clip with the placement the file gave it
    and that nothing preserved was dropped, so a filter that stops translating shows up here
    rather than in someone's project.

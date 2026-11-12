@@ -9,7 +9,7 @@ const englishUserSidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: 'Welcome', link: '/guide/start-here/' },
       { text: 'About the project', link: '/guide/start-here/about' },
-      { text: 'Install AviQtl-Plus', link: '/guide/start-here/installation' },
+      { text: 'Install Freya NLE', link: '/guide/start-here/installation' },
       { text: 'Make your first video', link: '/guide/start-here/first-video' }
     ]
   },
@@ -90,7 +90,7 @@ const chineseUserSidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: '欢迎', link: '/zh-CN/guide/start-here/' },
       { text: '关于项目', link: '/zh-CN/guide/start-here/about' },
-      { text: '安装 AviQtl-Plus', link: '/zh-CN/guide/start-here/installation' },
+      { text: '安装 Freya NLE', link: '/zh-CN/guide/start-here/installation' },
       { text: '制作第一个视频', link: '/zh-CN/guide/start-here/first-video' }
     ]
   },
@@ -212,24 +212,24 @@ const chineseThemeConfig: DefaultTheme.Config = {
 }
 
 export default defineConfig({
-  title: 'AviQtl-Plus Documentation',
-  description: 'User and developer documentation for AviQtl-Plus',
+  title: 'Freya NLE Documentation',
+  description: 'User and developer documentation for Freya NLE',
   cleanUrls: true,
   lastUpdated: true,
   locales: {
     root: {
       label: 'English',
       lang: 'en',
-      title: 'AviQtl-Plus Documentation',
-      description: 'Learn video editing with AviQtl-Plus or contribute to its development.',
+      title: 'Freya NLE Documentation',
+      description: 'Learn video editing with Freya NLE or contribute to its development.',
       themeConfig: englishThemeConfig
     },
     'zh-CN': {
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh-CN/',
-      title: 'AviQtl-Plus 文档',
-      description: '学习使用 AviQtl-Plus 制作视频，或参与项目开发。',
+      title: 'Freya NLE 文档',
+      description: '学习使用 Freya NLE 制作视频，或参与项目开发。',
       themeConfig: chineseThemeConfig,
       markdown: {
         container: {
@@ -247,9 +247,9 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    siteTitle: 'AviQtl-Plus',
+    siteTitle: 'Freya NLE',
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/GT-610/AviQtl-Plus' }
+      { icon: 'github', link: 'https://github.com/GT-610/Freya-NLE' }
     ],
     search: {
       provider: 'local',
