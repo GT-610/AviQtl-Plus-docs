@@ -27,6 +27,12 @@ python3 BUILD.py
 常用平台模式包括：
 
 ```bash
+# Linux 可移植 AppImage（推荐的 Linux 构建）
+python3 BUILD.py --appimage
+
+# Linux arm64 AppImage
+python3 BUILD.py --appimage --target aarch64-unknown-linux-gnu
+
 # Linux 容器构建环境
 python3 BUILD.py --arch
 
@@ -39,6 +45,11 @@ python3 BUILD.py
 # 显式选择 MSYS2 作为替代方案
 python3 BUILD.py --msys2
 ```
+
+arm64 AppImage 由 arm64 工具链编译，应在 arm64 主机上构建：Apple Silicon 的
+podman 虚拟机本身就是 arm64；x86_64 Linux 主机则需要为容器配置 qemu-user
+binfmt。它链接的是 `aarch64-unknown-linux-gnu` 的 FFmpeg 前缀，而不是 x86_64
+的那一份。
 
 MSVC 构建仅支持 Visual Studio 2022（17.x）及更高版本。Visual Studio 2019
 及更早版本不受支持。`BUILD.py` 会通过 `vswhere` 选择受支持的 Visual

@@ -34,6 +34,9 @@ Common platform-specific modes include:
 # Linux, portable AppImage (the recommended Linux build)
 python3 BUILD.py --appimage
 
+# Linux AppImage for arm64
+python3 BUILD.py --appimage --target aarch64-unknown-linux-gnu
+
 # Linux, Arch-compatible archive
 python3 BUILD.py --arch
 
@@ -50,6 +53,12 @@ python3 BUILD.py
 python3 BUILD.py --msys2
 ```
 
+The arm64 AppImage is compiled by the arm64 toolchain, so build it on an arm64
+host: an Apple Silicon Mac's podman machine is arm64 already, while an x86_64
+Linux host needs qemu-user binfmt support for the container. It links the
+`aarch64-unknown-linux-gnu` FFmpeg prefix, not the x86_64 one, so a separate
+host build has to export that `FFMPEG_DIR`.
+
 ## FFmpeg
 
 Releases link one pinned FFmpeg rather than whatever the host provides, because
@@ -60,10 +69,15 @@ glibc the binary needs, and a Homebrew bottle decides which macOS it needs.
 ```bash
 scripts/build-ffmpeg.sh --target x86_64-unknown-linux-gnu
 export FFMPEG_DIR="$PWD/.build_tmp/ffmpeg/x86_64-unknown-linux-gnu"
+
+# The arm64 AppImage links this prefix instead
+scripts/build-ffmpeg.sh --target aarch64-unknown-linux-gnu
+export FFMPEG_DIR="$PWD/.build_tmp/ffmpeg/aarch64-unknown-linux-gnu"
 ```
 
 `--target` is a Rust triple; the script accepts `x86_64-unknown-linux-gnu`,
-`aarch64-apple-darwin`, and `x86_64-apple-darwin`. It needs `nasm` for the
+`aarch64-unknown-linux-gnu`, `aarch64-apple-darwin`, and `x86_64-apple-darwin`.
+It needs `nasm` for the
 assembly kernels and fails without it rather than silently building a much
 slower encoder. `BUILD.py` runs it automatically for the macOS and AppImage
 targets when `brew` or the container is available; setting `FFMPEG_DIR`

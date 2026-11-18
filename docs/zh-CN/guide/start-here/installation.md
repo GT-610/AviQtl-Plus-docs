@@ -16,7 +16,8 @@ description: 在 Windows、Linux 或 macOS 上下载并启动 Freya NLE。
 | Windows 64 位 | `Freya-NLE-<版本>-windows-x86_64.zip` |
 | Apple Silicon 上的 macOS | `Freya-NLE-<版本>-macos-arm64.zip` |
 | Intel 上的 macOS | `Freya-NLE-<版本>-macos-x86_64.zip` |
-| Linux（任意发行版） | `Freya-NLE-<版本>-linux-x86_64.AppImage` |
+| Linux x86_64（任意发行版） | `Freya-NLE-<版本>-linux-x86_64.AppImage` |
+| Linux arm64（任意发行版） | `Freya-NLE-<版本>-linux-arm64.AppImage` |
 | Linux（Arch current） | `Freya-NLE-<版本>-linux-x86_64-archlinux.tar.zst` |
 
 同一版本的发行页面还提供 `SHA256SUMS`，列出了每个文件的校验和，可以在运行前校验下载结果。
@@ -44,9 +45,7 @@ chmod +x Freya-NLE-*.AppImage
 
 如果系统没有 FUSE，或你身处容器中，请用 `--appimage-extract-and-run` 运行。
 
-该构建面向 64 位 x86_64 系统，并要求 glibc 2.35 或更高——即 Ubuntu 22.04 及
-以上、Debian 12 及以上，或同样新的其他发行版。官方不提供 ARM 系统的构建，
-glibc 更旧的系统无法运行该镜像。
+该构建要求 glibc 2.35 或更高——即 Ubuntu 22.04 及以上、Debian 12 及以上，或同样新的其他发行版。每种架构各有一个镜像，请选择与你的处理器匹配的那个：`linux-x86_64` 或 `linux-arm64`。两者都在各自架构上原生构建，因此链接同一个固定版本的 FFmpeg，声明的最低 glibc 也相同。glibc 更旧的系统无法运行该镜像。
 
 `-archlinux` 压缩包是另一种 Linux 构建：它链接 Arch Linux 当前的 glibc 与 FFmpeg，因此可在 Arch 及其衍生版上运行，但在较旧的发行版上无法运行；它所需的 glibc 版本写在包内的 `build-info.json` 里。解压后直接运行可执行文件：
 

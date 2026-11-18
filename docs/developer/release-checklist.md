@@ -46,8 +46,12 @@ check `cargo --version` before trusting a red or green result.
 
 Required platforms, one release artifact each:
 
-- Linux, portable: `Freya-NLE-<version>-linux-x86_64.AppImage`, built on the
-  pinned Ubuntu 22.04 image and linked against the pinned FFmpeg
+- Linux, portable x86_64: `Freya-NLE-<version>-linux-x86_64.AppImage`, built on
+  the pinned Ubuntu 22.04 image and linked against the pinned FFmpeg
+- Linux, portable arm64: `Freya-NLE-<version>-linux-arm64.AppImage`, built
+  natively on an arm64 Ubuntu 22.04 runner against the same pinned FFmpeg. It is
+  not cross-compiled, so its toolchain, FFmpeg and glibc floor are the
+  architecture's own
 - Linux, Arch-compatible: `Freya-NLE-<version>-linux-x86_64-archlinux.tar.zst`,
   built on the pinned Arch image
 - macOS, Apple Silicon and Intel: one `macos-15` runner produces both
@@ -98,11 +102,14 @@ that could not run as unverified rather than passed.
 - Create the tag `v<version>` only after the checks above pass. A tag containing
   `-` is published as a GitHub pre-release and does not replace the latest stable
   release.
-- Confirm the release carries exactly these five files plus `SHA256SUMS`:
+- Confirm the release carries exactly these six files plus `SHA256SUMS`:
   `Freya-NLE-<version>-linux-x86_64.AppImage`,
+  `Freya-NLE-<version>-linux-arm64.AppImage`,
   `Freya-NLE-<version>-linux-x86_64-archlinux.tar.zst`,
   `Freya-NLE-<version>-macos-arm64.zip`,
   `Freya-NLE-<version>-macos-x86_64.zip`,
   `Freya-NLE-<version>-windows-x86_64.zip`.
 - Download and smoke-test the published artifacts before announcing the release.
-  Testing the locally built copy is not evidence about what was uploaded.
+  Testing the locally built copy is not evidence about what was uploaded. The
+  arm64 image has to be started on an arm64 machine; an x86_64 host cannot prove
+  it runs, and an image labelled arm64 around an x86_64 payload starts nowhere.

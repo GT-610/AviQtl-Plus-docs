@@ -21,7 +21,8 @@ the file that matches your operating system and processor:
 | Windows, 64-bit | `Freya-NLE-<version>-windows-x86_64.zip` |
 | macOS on Apple Silicon | `Freya-NLE-<version>-macos-arm64.zip` |
 | macOS on Intel | `Freya-NLE-<version>-macos-x86_64.zip` |
-| Linux, any distribution | `Freya-NLE-<version>-linux-x86_64.AppImage` |
+| Linux on x86_64, any distribution | `Freya-NLE-<version>-linux-x86_64.AppImage` |
+| Linux on arm64, any distribution | `Freya-NLE-<version>-linux-arm64.AppImage` |
 | Linux, Arch current | `Freya-NLE-<version>-linux-x86_64-archlinux.tar.zst` |
 
 `SHA256SUMS` in the same release lists the checksum of every file, so a download
@@ -60,10 +61,12 @@ Carla is required only for VST3 and LV2 audio effects.
 If your system does not have FUSE, or you are inside a container, run it with
 `--appimage-extract-and-run`.
 
-The build is for 64-bit x86_64 systems and needs glibc 2.35 or newer — Ubuntu
-22.04 and later, Debian 12 and later, or any distribution at least that recent.
-There is no official build for ARM systems, and a system older than that glibc
-cannot run the image.
+The build needs glibc 2.35 or newer — Ubuntu 22.04 and later, Debian 12 and
+later, or any distribution at least that recent — and there is one image per
+architecture, so pick the one that matches your processor: `linux-x86_64` or
+`linux-arm64`. Each is built natively on its own architecture, so both link the
+same pinned FFmpeg and declare the same glibc floor. A system older than that
+glibc cannot run the image.
 
 The `-archlinux` archive is the other Linux build: it is linked against Arch
 Linux's current glibc and FFmpeg, so it runs on Arch and its derivatives but not
