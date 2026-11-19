@@ -164,7 +164,7 @@ for environments that provide the matching GNU Rust target and dependencies.
 ## Toolchain
 
 The Rust version is pinned in `rust-toolchain.toml`, and CI uses
-`dtolnay/rust-toolchain@1.99.1`. Make sure the pinned toolchain is the one on
+`dtolnay/rust-toolchain@1.100.0`. Make sure the pinned toolchain is the one on
 `PATH`: a newer `cargo` from a system package manager takes precedence over the
 `rustup` shim and can turn deprecation lints into build failures. Check
 `cargo --version` before trusting a result.
